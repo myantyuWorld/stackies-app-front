@@ -1,6 +1,6 @@
 FROM node:16.13.2-alpine
 WORKDIR /app
-COPY frontend/vite_fast/ ./
+COPY vite_fast/ ./
 
 RUN apk update
 # "yarn dev"は package.json内にscriptｓに記載されています。

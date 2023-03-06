@@ -3,10 +3,10 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: frontend/Dockerfile
+      dockerfile: Dockerfile
     container_name: vue_app
     working_dir: /app
     volumes:
-      - ./frontend/vite_fast:/app
+      - ./vite_fast:/app
     ports:
       - "15173:5173"
