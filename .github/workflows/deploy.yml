@@ -57,7 +57,7 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync ./build s3://${{ secrets.AWS_S3_BUCKET_NAME }}
+          aws s3 sync ./vite_fast/dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}
 
       - name: CloudFront Cache Clear
         run: |
