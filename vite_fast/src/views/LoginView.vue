@@ -21,7 +21,7 @@
                             <label for="password"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stackies!は、案件対応履歴管理アプリです。</label>
                             <label for="password"
-                                class="block mb-2 text-sm font-light text-gray-900 dark:text-white">ああああああああああああああああああああああああああああああああああああああ</label>
+                                class="block mb-2 text-sm font-light text-gray-900 dark:text-white">あああああああああああああああああああああああああああああああああああああaあ</label>
                             <label for="password"
                                 class="block mb-2 text-sm font-light text-gray-900 dark:text-white">ああああああああああああああああああああああああああああああああああああああ</label>
                         </div>
