@@ -42,9 +42,11 @@ jobs:
 
       - name: Package Install
         run: yarn install
+        working-directory: ./vite_fast
 
       - name: Build
         run: yarn build
+        working-directory: ./vite_fast
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
