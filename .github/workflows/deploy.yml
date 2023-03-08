@@ -16,7 +16,10 @@ jobs:
   deploy:
     name: Build & Deploy
     runs-on: ubuntu-20.04
-    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # 以下のifは、L3 ~ L10で定義している別のワークフローが成功したら、本ワークフローを行う、設定
+    # 今回は、lintによるチェックなどは行わないので、以下のifもコメントアウト
+    # 参考 : Github Actions の workflow run について | https://zenn.dev/keitacoins/articles/2a715be45e874f
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }} 
     timeout-minutes: 5
 
     steps:
