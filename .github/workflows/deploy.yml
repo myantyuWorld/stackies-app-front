@@ -45,7 +45,7 @@ jobs:
         working-directory: ./vite_fast
 
       - name: Build
-        run: yarn build
+        run: yarn run build-only
         working-directory: ./vite_fast
 
       - name: Configure AWS Credentials
