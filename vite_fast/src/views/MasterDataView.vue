@@ -86,12 +86,44 @@ const fetchTechnologies = () => {
   promise
     .then((response) => {
       console.log(response.data)
-      languageList.value = response.data.languageList
-      toolList.value = response.data.toolList
-      infraList.value = response.data.infraList
+      let list: { category: string; name: string; }[] = []
+      let list2: { category: string; name: string; }[] = []
+      console.log("filter")
+      let languageList = response.data.filter((value : String) => {
+        return value["category"]["S"] === "1"
+      })
+      let infraList = response.data.filter((value : String) => {
+        return value["category"]["S"] === "2"
+      })
+      console.log(languageList)
+      console.log(infraList)
+      languageList.forEach((item: any) => {
+        // console.log(item)
+        // console.log(item["category"]["S"])
+        list.push({
+          "category" : item["category"]["S"],
+          "name" : item["name"]["S"]
+        })
+      });
+      infraList.forEach((item: any) => {
+        // console.log(item)
+        // console.log(item["category"]["S"])
+        list2.push({
+          "category" : item["category"]["S"],
+          "name" : item["name"]["S"]
+        })
+      });
+      // console.log(list)
+      // データ加工
+      return Promise.resolve({
+        list,
+        list2
+      })
     })
-    .then(() => {
+    .then((data) => {
       // TODO : reactiveな変数に取得結果を格納する
+      languageList.value = data.list
+      infraList.value = data.list2
     })
     .catch((e) => {
       alert(e.message)
