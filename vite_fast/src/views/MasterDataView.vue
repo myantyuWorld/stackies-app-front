@@ -82,48 +82,49 @@ const infraList = ref([
 const isShowLoading = ref(false)
 
 const fetchTechnologies = () => {
-  const promise = axios.get("http://localhost:18000/api/v2/technologies")
+  const promise = axios.get("https://evedvr2a8f.execute-api.ap-northeast-1.amazonaws.com/Prod/technologies")
   promise
     .then((response) => {
       console.log(response.data)
       let list: { category: string; name: string; }[] = []
       let list2: { category: string; name: string; }[] = []
-      console.log("filter")
-      let languageList = response.data.filter((value : String) => {
+      let list3: { category: string; name: string; }[] = []
+      response.data.filter((value: String) => {
         return value["category"]["S"] === "1"
-      })
-      let infraList = response.data.filter((value : String) => {
-        return value["category"]["S"] === "2"
-      })
-      console.log(languageList)
-      console.log(infraList)
-      languageList.forEach((item: any) => {
-        // console.log(item)
-        // console.log(item["category"]["S"])
+      }).forEach((item: any) => {
         list.push({
-          "category" : item["category"]["S"],
-          "name" : item["name"]["S"]
+          "category": item["category"]["S"],
+          "name": item["name"]["S"]
         })
       });
-      infraList.forEach((item: any) => {
-        // console.log(item)
-        // console.log(item["category"]["S"])
+      response.data.filter((value: String) => {
+        return value["category"]["S"] === "2"
+      }).forEach((item: any) => {
         list2.push({
-          "category" : item["category"]["S"],
-          "name" : item["name"]["S"]
+          "category": item["category"]["S"],
+          "name": item["name"]["S"]
         })
       });
-      // console.log(list)
+      response.data.filter((value: String) => {
+        return value["category"]["S"] === "3"
+      }).forEach((item: any) => {
+        list3.push({
+          "category": item["category"]["S"],
+          "name": item["name"]["S"]
+        })
+      });
       // データ加工
       return Promise.resolve({
         list,
-        list2
+        list2,
+        list3
       })
     })
     .then((data) => {
       // TODO : reactiveな変数に取得結果を格納する
       languageList.value = data.list
       infraList.value = data.list2
+      toolList.value = data.list3
     })
     .catch((e) => {
       alert(e.message)
@@ -131,6 +132,9 @@ const fetchTechnologies = () => {
 }
 fetchTechnologies()
 const click_regist = () => {
+  console.log("=====")
+  console.log("click_regist")
+  console.log("=====")
   console.log(languageList.value.filter(x => x.checked))
   console.log(toolList.value.filter(x => x.checked))
   console.log(infraList.value.filter(x => x.checked))
@@ -185,9 +189,4 @@ const click_regist = () => {
       </div>
     </div>
   </div>
-
-
-
-
-
 </template>
