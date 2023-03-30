@@ -5,79 +5,9 @@ import router from '@/router';
 import MasterData from '../components/MasterData.vue'
 import Loading from '../components/Loading.vue'
 
-
-
-const languageList = ref([
-  // {
-  //   name: "Java",
-  //   value: "1",
-  //   checked: false
-  // },
-  // {
-  //   name: "C#",
-  //   value: "2",
-  //   checked: false
-  // },
-  // {
-  //   name: "Python",
-  //   value: "3",
-  //   checked: false
-  // },
-  // {
-  //   name: "Javascript",
-  //   value: "4",
-  //   checked: false
-  // },
-  // {
-  //   name: "aaa",
-  //   value: "5",
-  //   checked: false
-  // },
-  // {
-  //   name: "bbb",
-  //   value: "6",
-  //   checked: false
-  // },
-  // {
-  //   name: "ccc",
-  //   value: "7",
-  //   checked: false
-  // },
-])
-const toolList = ref([
-  // {
-  //   name: "Docker",
-  //   value: "1",
-  //   checked: false
-  // },
-  // {
-  //   name: "AWS CLI",
-  //   value: "2",
-  //   checked: false
-  // },
-  // {
-  //   name: "VS Code",
-  //   value: "3",
-  //   checked: false
-  // },
-])
-const infraList = ref([
-  // {
-  //   name: "Windows",
-  //   value: "1",
-  //   checked: false
-  // },
-  // {
-  //   name: "Linux",
-  //   value: "2",
-  //   checked: false
-  // },
-  // {
-  //   name: "AWS ECS",
-  //   value: "3",
-  //   checked: false
-  // },
-])
+const languageList = ref([])
+const toolList = ref([])
+const infraList = ref([])
 
 const isShowLoading = ref(false)
 
