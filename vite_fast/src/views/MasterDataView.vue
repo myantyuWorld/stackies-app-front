@@ -10,9 +10,11 @@ const toolList = ref([])
 const infraList = ref([])
 
 const isShowLoading = ref(false)
+console.log(import.meta.env.VITE_APP_API_URL)   
+console.log(import.meta.env)   
 
 const fetchTechnologies = () => {
-  const promise = axios.get("https://evedvr2a8f.execute-api.ap-northeast-1.amazonaws.com/Prod/technologies")
+  const promise = axios.get(`${import.meta.env.VITE_APP_API_URL}technologies`)
   promise
     .then((response) => {
       console.log(response.data)
@@ -65,9 +67,16 @@ const click_regist = () => {
   console.log("=====")
   console.log("click_regist")
   console.log("=====")
-  console.log(languageList.value.filter(x => x.checked))
-  console.log(toolList.value.filter(x => x.checked))
-  console.log(infraList.value.filter(x => x.checked))
+
+  var selected_list = languageList.value.filter(x => x.checked)
+  selected_list.push(toolList.value.filter(x => x.checked))
+  selected_list.push(infraList.value.filter(x => x.checked))
+  console.log(languageList.value.filter(x => x.checked)[0])
+  console.log(toolList.value.filter(x => x.checked)[0])
+  console.log(infraList.value.filter(x => x.checked)[0])
+
+  console.log(selected_list)
+  
   new Promise((resolve) => {
     isShowLoading.value = true
     setTimeout(() => {
