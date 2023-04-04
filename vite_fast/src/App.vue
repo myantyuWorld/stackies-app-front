@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import Stepper from './components/Stepper.vue'
+import { Authenticator } from "@aws-amplify/ui-vue";
+import "@aws-amplify/ui-vue/styles.css";
+
+import { Amplify } from 'aws-amplify';
+import awsconfig from '@/aws-exports';
+Amplify.configure(awsconfig);
 </script>
 
 <template>
   <div class="bg-gradient-to-br ">
-    <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-7xl px-6 my-5">
       <div class="flex items-center justify-between border-b-2 border-gray-300  md:justify-start md:space-x-10">
         <div class="flex">
           <div class="w-1/2">
@@ -39,16 +45,18 @@ import Stepper from './components/Stepper.vue'
         </div>
       </div>
     </div>
-    
-    <!-- メインコンテンツ -->
-    <div class="flex p-5">
-      <div class="w-1/4 pt-8 pl-4  rounded-xl shadow-lg">
-        <Stepper/>
+    <authenticator>
+
+      <!-- メインコンテンツ -->
+      <div class="flex p-5">
+        <div class="w-1/4 pt-8 pl-4  rounded-xl shadow-lg">
+          <Stepper />
+        </div>
+        <div class="w-3/4">
+          <RouterView />
+        </div>
       </div>
-      <div class="w-3/4">
-        <RouterView />
-      </div>
-    </div>
+    </authenticator>
 
   </div>
 </template>
