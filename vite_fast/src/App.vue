@@ -46,16 +46,20 @@ Amplify.configure(awsconfig);
       </div>
     </div>
     <authenticator>
-
-      <!-- メインコンテンツ -->
-      <div class="flex p-5">
-        <div class="w-1/4 pt-8 pl-4  rounded-xl shadow-lg">
-          <Stepper />
+      <template v-slot="{ user, signOut }">
+        <h1>Hello {{ user.username }}!</h1>
+        <h1>Hello {{ user }}!</h1>
+        <button @click="signOut">Sign Out</button>
+        <!-- メインコンテンツ -->
+        <div class="flex p-5">
+          <div class="w-1/4 pt-8 pl-4  rounded-xl shadow-lg">
+            <Stepper />
         </div>
         <div class="w-3/4">
           <RouterView />
         </div>
       </div>
+    </template>
     </authenticator>
 
   </div>
