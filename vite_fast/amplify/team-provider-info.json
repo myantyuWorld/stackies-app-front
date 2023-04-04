@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vitefast-dev-222325-authRole",
+      "UnauthRoleArn": "arn:aws:iam::583492173965:role/amplify-vitefast-dev-222325-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::583492173965:role/amplify-vitefast-dev-222325-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-vitefast-dev-222325-deployment",
+      "UnauthRoleName": "amplify-vitefast-dev-222325-unauthRole",
+      "StackName": "amplify-vitefast-dev-222325",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:583492173965:stack/amplify-vitefast-dev-222325/e218ff70-d2eb-11ed-b087-0ed8f2c77813",
+      "AmplifyAppId": "d2x1avukcfwlo4"
+    },
+    "categories": {
+      "auth": {
+        "vitefast40465785": {}
+      }
+    }
+  }
+}
