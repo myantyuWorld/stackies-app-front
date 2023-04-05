@@ -4,6 +4,13 @@ import axios from 'axios';
 import router from '@/router';
 import MasterData from '../components/MasterData.vue'
 import Loading from '../components/Loading.vue'
+import { useStore } from '@/stores/store' 
+import { toRefs } from 'vue';
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-vue';
+
+// https://ui.docs.amplify.aws/vue/connected-components/authenticator/headless
+const { route, user, signOut } = toRefs(useAuthenticator());
+console.log(user.value.username) // "hogehoge"
 
 const languageList = ref([])
 const toolList = ref([])
@@ -84,6 +91,7 @@ const click_regist = () => {
   }).then(() => {
     isShowLoading.value = false
     axios.post(`${import.meta.env.VITE_APP_API_URL}experience_technology`, {
+      "user_id" : user.value.username,
       "data" : selected_list.flat(2) 
     })
     .then((response) => {
