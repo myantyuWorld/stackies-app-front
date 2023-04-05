@@ -13,6 +13,9 @@ const isShowLoading = ref(false)
 console.log(import.meta.env.VITE_APP_API_URL)   
 console.log(import.meta.env)   
 
+/**
+ * 技術マスタから技術レコードを取得する
+ */
 const fetchTechnologies = () => {
   const promise = axios.get(`${import.meta.env.VITE_APP_API_URL}technologies`)
   promise
@@ -63,6 +66,10 @@ const fetchTechnologies = () => {
     })
 }
 fetchTechnologies()
+
+/**
+ * 経験のある技術を選択した結果を、APIリクエストする
+ */
 const click_regist = () => {
   console.log("=====")
   console.log("click_regist")
@@ -71,20 +78,22 @@ const click_regist = () => {
   var selected_list = languageList.value.filter(x => x.checked)
   selected_list.push(toolList.value.filter(x => x.checked))
   selected_list.push(infraList.value.filter(x => x.checked))
-  console.log(languageList.value.filter(x => x.checked)[0])
-  console.log(toolList.value.filter(x => x.checked)[0])
-  console.log(infraList.value.filter(x => x.checked)[0])
-
-  console.log(selected_list)
+  console.log(selected_list.flat(2))
   
   new Promise((resolve) => {
     isShowLoading.value = true
     setTimeout(() => {
       resolve();
-    }, 3000);
+    }, 1000);
   }).then(() => {
     isShowLoading.value = false
     // TODO : バリデーションエラーがない場合、APIリクエストする
+    axios.post(`${import.meta.env.VITE_APP_API_URL}experience_technology`, {
+      "data" : selected_list.flat(2) 
+    })
+    .then((response) => {
+      console.log(response)
+    })
   });
   // router.push('menu')
 }
