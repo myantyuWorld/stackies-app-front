@@ -10,9 +10,6 @@ const toolList = ref([])
 const infraList = ref([])
 
 const isShowLoading = ref(false)
-console.log(import.meta.env.VITE_APP_API_URL)   
-console.log(import.meta.env)   
-
 /**
  * 技術マスタから技術レコードを取得する
  */
@@ -56,7 +53,6 @@ const fetchTechnologies = () => {
       })
     })
     .then((data) => {
-      // TODO : reactiveな変数に取得結果を格納する
       languageList.value = data.list
       infraList.value = data.list2
       toolList.value = data.list3
@@ -87,7 +83,6 @@ const click_regist = () => {
     }, 1000);
   }).then(() => {
     isShowLoading.value = false
-    // TODO : バリデーションエラーがない場合、APIリクエストする
     axios.post(`${import.meta.env.VITE_APP_API_URL}experience_technology`, {
       "data" : selected_list.flat(2) 
     })
