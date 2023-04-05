@@ -21,6 +21,7 @@ const isShowLoading = ref(false)
  * 技術マスタから技術レコードを取得する
  */
 const fetchTechnologies = () => {
+  isShowLoading.value = true
   const promise = axios.get(`${import.meta.env.VITE_APP_API_URL}technologies`)
   promise
     .then((response) => {
@@ -63,9 +64,11 @@ const fetchTechnologies = () => {
       languageList.value = data.list
       infraList.value = data.list2
       toolList.value = data.list3
+      isShowLoading.value = false
     })
     .catch((e) => {
       alert(e.message)
+      isShowLoading.value = false
     })
 }
 fetchTechnologies()
@@ -82,20 +85,31 @@ const click_regist = () => {
   selected_list.push(toolList.value.filter(x => x.checked))
   selected_list.push(infraList.value.filter(x => x.checked))
   console.log(selected_list.flat(2))
-  
+
+  var data: { name: any; category: any; level: string; }[] = []
+  selected_list.flat(2).forEach((item) => {
+    data.push({
+      "name" : item.name,
+      "category" : item.category,
+      "level" : "1"
+    })
+  })
+
   new Promise((resolve) => {
     isShowLoading.value = true
     setTimeout(() => {
       resolve();
     }, 1000);
   }).then(() => {
-    isShowLoading.value = false
     axios.post(`${import.meta.env.VITE_APP_API_URL}experience_technology`, {
       "user_id" : user.value.username,
-      "data" : selected_list.flat(2) 
+      "data" : data
     })
     .then((response) => {
       console.log(response)
+      isShowLoading.value = false
+    }).catch(error => {
+      isShowLoading.value = false
     })
   });
   // router.push('menu')
