@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import router from '@/router';
-import { ref } from 'vue';
+import { ref, toRefs } from 'vue';
 import { onMounted } from 'vue'
 import { initModals } from 'flowbite'
 import { useVuelidate } from '@vuelidate/core';
 import { required, maxLength, minLength, alpha } from '@vuelidate/validators';
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-vue';
+import { DataAlreadyAcceptedException } from '@aws-sdk/client-cloudwatch-logs';
+const { route, user, signOut } = toRefs(useAuthenticator());
+console.log(user.value.username) // "hogehoge"
+import axios from 'axios';
 
 import ExperienceRating from '../components/ExperienceRating.vue'
 import Loading from '../components/Loading.vue'
 import Rating from '../components/Rating.vue'
 import BaseInfo from '../components/BaseInfo.vue'
+import { respond } from 'xstate/lib/actions';
 
 // initialize components based on data attribute selectors
 onMounted(() => {
@@ -29,23 +35,7 @@ const data = ref({
     address: "広島県広島市hogehogeのほげ",
     self_pr: ""
   },
-  experienceRateInfo: [
-    {
-      id: "1",
-      name: "Java",
-      level: "3",
-    },
-    {
-      id: "2",
-      name: "C#",
-      level: "3",
-    },
-    {
-      id: "3",
-      name: "javascript",
-      level: "3",
-    }
-  ]
+  experienceRateInfo: []
 })
 const isShowLoading = ref(false)
 const inputMode = ref(false)
@@ -63,6 +53,14 @@ const rules = {
   self_pr: { required }
 }
 const v$ = useVuelidate(rules, data.value.baseinfo)
+
+const fetchExperienceTechnologies = () => {
+  axios.get(`${import.meta.env.VITE_APP_API_URL}experience_technology?user_id=${user.value.username}`)
+  .then((response) => {
+    data.value.experienceRateInfo = response.data
+  }) 
+}
+fetchExperienceTechnologies()
 
 const click_regist = async () => {
   inputMode.value = true
