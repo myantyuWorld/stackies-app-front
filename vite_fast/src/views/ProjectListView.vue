@@ -215,7 +215,6 @@ const clickAddProject = async () => {
           <div class="rounded-xl bg-white shadow-xl">
             <div class="p-3 sm:p-3">
               <div class="space-y-4">
-                <h2 class="mb-0 text-2xl text-cyan-900 font-bold">案件対応履歴</h2>
               </div>
               <div class="flex bg-white">
                 <BaseInfo :v$="v$" :inputMode="true" :base-info="data.baseinfo" />
@@ -236,9 +235,6 @@ const clickAddProject = async () => {
 
               <div class="space-y-0">
                 <div class="flex">
-                  <h2 class="mb-0 text-2xl text-cyan-900 font-bold">
-                    業務履歴
-                  </h2>
                   <button type="button" data-modal-target="staticModal" data-modal-toggle="staticModal"
                     class="ml-3 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">追加</button>
                 </div>

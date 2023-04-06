@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Rating from '../components/Rating.vue'
 // defineProps<{
 //   msg: string
 // }>()
@@ -8,8 +9,8 @@
     <li class="mb-10 ml-6">
       <span
         class="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-        <svg aria-hidden="true" class="w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor"
-          viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <svg aria-hidden="true" class="w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd"
             d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
             clip-rule="evenodd"></path>
@@ -54,4 +55,43 @@
       <p class="text-sm">新規で案件対応を追加したい場合は、「業務履歴」横の追加ボタンから登録</p>
     </li>
   </ol>
+  <div id="" class=" bg-gray-100  py-8 rounded-xl">
+    <span>技術レベルの目安</span>
+    <div class="flex flex-wrap justify-items-center">
+      <div class="w-1/2 p-1">
+        <Rating rate="1" />
+      </div>
+      <div class="w-1/2 p-1">
+        知識レベル
+      </div>
+      <div class="w-1/2 p-1">
+        <Rating rate="2" />
+      </div>
+      <div class="w-1/2 p-1">
+        開発経験あり
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-items-center">
+      <div class="w-1/2 p-1">
+        <Rating rate="3" />
+      </div>
+      <div class="w-1/2 p-1">
+        開発可能
+      </div>
+      <div class="w-1/2 p-1">
+        <Rating rate="4" />
+      </div>
+      <div class="w-1/2 p-1">
+        技術精通
+      </div>
+    </div>
+    <div class="flex flex-wrap justify-items-center">
+      <div class="w-1/2 p-1">
+        <Rating rate="5" />
+      </div>
+      <div class="w-1/2 p-1">
+        指導可能
+      </div>
+    </div>
+  </div>
 </template>
