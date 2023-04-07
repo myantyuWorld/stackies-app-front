@@ -27,6 +27,7 @@ onMounted(() => {
  */
 const data = ref({
   baseinfo: {
+    user_id : user.value.username,
     initial: "",
     birth_date: "1990-08-20",
     last_educational_background: "ほげほげ専門学校",
@@ -74,10 +75,19 @@ const click_regist = async () => {
     isShowLoading.value = true
     setTimeout(() => {
       resolve();
-    }, 3000);
+    }, 1000);
   }).then(() => {
     isShowLoading.value = false
-    // TODO : バリデーションエラーがない場合、APIリクエストする
+    axios.post(`${import.meta.env.VITE_APP_API_URL}base_info`, {
+      "data" : data.value
+    })
+    .then((response) => {
+      console.log(response)
+      isShowLoading.value = false
+    })
+    .catch(
+      isShowLoading.value = true
+    )
     // router.push('projects')
   });
 
