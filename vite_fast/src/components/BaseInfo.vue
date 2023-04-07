@@ -64,33 +64,6 @@ defineProps<{
       </div>
 
     </div>
-    <div class="p-1 w-3/12">
-      <div>
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-          郵便番号
-        </label>
-        <InputComponent :input-mode="inputMode" placeholder="郵便番号" :value="baseInfo.postcode"
-          v-model="baseInfo.postcode" />
-        <div v-for="error of v$.postcode.$errors" :key="error.$uid">
-          <div class="text-red-700 font-bold">{{ error.$message }}</div>
-        </div>
-      </div>
-
-    </div>
-    <div class="p-1 w-9/12">
-
-      <div>
-        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-          住所
-        </label>
-        <InputComponent :input-mode="inputMode" placeholder="住所" :value="baseInfo.address" v-model="baseInfo.address" />
-        <div v-for="error of v$.address.$errors" :key="error.$uid">
-          <div class="text-red-700 font-bold">{{ error.$message }}</div>
-        </div>
-      </div>
-
-    </div>
-
 
     <div class="p-1 w-full">
 

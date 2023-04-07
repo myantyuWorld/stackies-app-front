@@ -32,7 +32,6 @@ const data = ref({
     last_educational_background: "ほげほげ専門学校",
     qualification: "応用情報技術者, AWS CLF",
     postcode: "7310102",
-    address: "広島県広島市hogehogeのほげ",
     self_pr: ""
   },
   experienceRateInfo: []
@@ -48,8 +47,6 @@ const rules = {
   birth_date: { required },
   last_educational_background: { required },
   qualification: { required },
-  postcode: { required, minLength: minLength(7), maxLength: maxLength(7) },
-  address: { required },
   self_pr: { required }
 }
 const v$ = useVuelidate(rules, data.value.baseinfo)
@@ -81,7 +78,7 @@ const click_regist = async () => {
   }).then(() => {
     isShowLoading.value = false
     // TODO : バリデーションエラーがない場合、APIリクエストする
-    router.push('projects')
+    // router.push('projects')
   });
 
 }
