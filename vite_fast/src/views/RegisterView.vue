@@ -26,31 +26,19 @@ onMounted(() => {
  * データ
  */
 const data = ref({
-  baseinfo: {
-    user_id : user.value.username,
-    initial: "",
-    birth_date: "1990-08-20",
-    last_educational_background: "ほげほげ専門学校",
-    qualification: "応用情報技術者, AWS CLF",
-    postcode: "7310102",
-    self_pr: ""
-  },
+  baseinfo: {},
   experienceRateInfo: []
 })
-const isShowLoading = ref(false)
-const inputMode = ref(false)
-
-/**
- * バリデーションルール
- */
 const rules = {
-  initial: { required, minLength: minLength(2), maxLength: maxLength(2), alpha },
-  birth_date: { required },
-  last_educational_background: { required },
-  qualification: { required },
-  self_pr: { required }
+initial: { required, minLength: minLength(2), maxLength: maxLength(2), alpha },
+birth_date: { required },
+last_educational_background: { required },
+qualification: { required },
+self_pr: { required }
 }
 const v$ = useVuelidate(rules, data.value.baseinfo)
+const isShowLoading = ref(false)
+const inputMode = ref(false)
 
 const fetchExperienceTechnologies = () => {
   axios.get(`${import.meta.env.VITE_APP_API_URL}experience_technology?user_id=${user.value.username}`)
@@ -58,11 +46,23 @@ const fetchExperienceTechnologies = () => {
     data.value.experienceRateInfo = response.data
   }) 
 }
+const fetchBaseInfo = () => {
+  axios.get(`${import.meta.env.VITE_APP_API_URL}base_info?user_id=${user.value.username}`)
+  .then((response) => {
+    console.log(response.data)
+    data.value.baseinfo = response.data[0]
+  }) 
+}
 fetchExperienceTechnologies()
+fetchBaseInfo()
+/**
+ * バリデーションルール
+ */
 
 const click_regist = async () => {
   inputMode.value = true
   console.log(data.value)
+  // TODO : API取得時のデータを格納しているが、バリデーションチェックに引っかかる
   const result = await v$.value.$validate();
   console.log('result', result);
   console.log('$errors', v$.value.$errors);
