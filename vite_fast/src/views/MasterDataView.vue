@@ -22,7 +22,8 @@ const click_regist = () => {
 }
 
 init()
-// TODO : Vue.js: 子コンポーネントのチェックボックスを双方向にデータバインディングする | https://qiita.com/FumioNonaka/items/709360072e9f645447f8
+
+// TODO : piniaにローディング変数を移植して、ローディングアニメーションが効かなくなった
 </script>
 
 <template>

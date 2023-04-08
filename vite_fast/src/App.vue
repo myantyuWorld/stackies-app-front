@@ -7,6 +7,10 @@ import "@aws-amplify/ui-vue/styles.css";
 import { Amplify } from 'aws-amplify';
 import awsconfig from '@/aws-exports';
 Amplify.configure(awsconfig);
+
+// TODO : SignInをオーバーライドして、認証されたら、stackiesStoreのinit()を行う >>> 技術マスタ、基本情報、案件対応履歴などを取得しておく（画面でいちいちAPI実行させないようにするため）
+// https://ui.docs.amplify.aws/vue/connected-components/authenticator/customization#override-function-calls
+
 </script>
 
 <template>
