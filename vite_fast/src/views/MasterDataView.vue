@@ -7,6 +7,7 @@ import Loading from '../components/Loading.vue'
 import { toRefs } from 'vue';
 import { Authenticator, useAuthenticator } from '@aws-amplify/ui-vue';
 import {useStacikesStore} from '@/stores/store'
+import { staticBlock } from '@babel/types';
 
 const stakiesStore = useStacikesStore();
 // https://ui.docs.amplify.aws/vue/connected-components/authenticator/headless
@@ -16,50 +17,11 @@ const init = () => {
   stakiesStore.fetchTechnologies()
   stakiesStore.fetchExperienceTechnologies(user.value.username)
 }
-init()
-
-/**
- * 経験のある技術を選択した結果を、APIリクエストする
- */
 const click_regist = () => {
-  console.log("=====")
-  console.log("click_regist")
-  console.log("=====")
-
-  var selected_list = stakiesStore.languageList.filter(x => x.checked)
-  selected_list.push(stakiesStore.toolList.filter(x => x.checked))
-  selected_list.push(stakiesStore.infraList.filter(x => x.checked))
-  console.log(selected_list.flat(2))
-
-  var data: { name: any; category: any; level: string; }[] = []
-  selected_list.flat(2).forEach((item) => {
-    data.push({
-      "name" : item.name,
-      "category" : item.category,
-      "level" : "1"
-    })
-  })
-
-  new Promise((resolve) => {
-    stakiesStore.showLoading()
-    setTimeout(() => {
-      resolve();
-    }, 1000);
-  }).then(() => {
-    axios.post(`${import.meta.env.VITE_APP_API_URL}experience_technology`, {
-      "user_id" : user.value.username,
-      "data" : data
-    })
-    .then((response) => {
-      stakiesStore.hideLoading()
-
-      router.push('menu')
-    }).catch(error => {
-      stakiesStore.hideLoading()
-    })
-  });
+  stakiesStore.putExperienceTechnologies(user.value.username)
 }
 
+init()
 // TODO : Vue.js: 子コンポーネントのチェックボックスを双方向にデータバインディングする | https://qiita.com/FumioNonaka/items/709360072e9f645447f8
 </script>
 
