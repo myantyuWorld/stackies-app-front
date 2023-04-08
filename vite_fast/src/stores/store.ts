@@ -6,6 +6,7 @@ export const useStacikesStore = defineStore('counter', () => {
   const count = ref(0)
   const doubleCount = computed(() => count.value * 2)
 
+  const isShowLoading = ref(true)
   // 技術マスタ
   const languageList = ref([])
   const toolList = ref([])
@@ -62,6 +63,9 @@ export const useStacikesStore = defineStore('counter', () => {
         infraList.value = data.list2
         toolList.value = data.list3
       })
+      .finally(
+        hideLoading()
+      )
   }
   /***
    * 経験技術リスト取得
@@ -71,6 +75,9 @@ export const useStacikesStore = defineStore('counter', () => {
       .then((response) => {
         experienceRateInfo.value = response.data
       })
+      .finally(
+        hideLoading()
+      )
   }
   /***
    * 基本情報の取得
@@ -81,6 +88,16 @@ export const useStacikesStore = defineStore('counter', () => {
       console.log(response.data)
       baseinfo.value = response.data[0]
     }) 
+  }
+
+  const showLoading = () => {
+    isShowLoading.value = false
+  }
+  const hideLoading = () => {
+    isShowLoading.value = false
+  }
+  const isLoading = () => {
+    return isShowLoading.value
   }
 
   return { 
@@ -94,6 +111,9 @@ export const useStacikesStore = defineStore('counter', () => {
     experienceRateInfo,
     fetchBaseInfo, 
     fetchTechnologies, 
-    fetchExperienceTechnologies 
+    fetchExperienceTechnologies,
+    showLoading,
+    hideLoading,
+    isLoading,
   }
 })
