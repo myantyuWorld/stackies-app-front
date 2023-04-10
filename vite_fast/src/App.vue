@@ -21,10 +21,9 @@ const services = {
         password
       });
 
-      const { route, user, signOut } = toRefs(useAuthenticator());
-
       stakiesStore.fetchTechnologies()
-      stakiesStore.fetchExperienceTechnologies(user.value.username)
+      stakiesStore.fetchExperienceTechnologies(username)
+      stakiesStore.fetchBaseInfo(username)
 
       return promise
     },
