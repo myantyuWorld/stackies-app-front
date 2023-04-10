@@ -5,17 +5,13 @@ import { onMounted } from 'vue'
 import { initModals } from 'flowbite'
 import { useVuelidate } from '@vuelidate/core';
 import { required, maxLength, minLength, alpha } from '@vuelidate/validators';
-import { Authenticator, useAuthenticator } from '@aws-amplify/ui-vue';
-import { DataAlreadyAcceptedException } from '@aws-sdk/client-cloudwatch-logs';
-const { route, user, signOut } = toRefs(useAuthenticator());
-console.log(user.value.username) // "hogehoge"
+import {useStacikesStore} from '@/stores/store'
 import axios from 'axios';
-
 import ExperienceRating from '../components/ExperienceRating.vue'
 import Loading from '../components/Loading.vue'
 import Rating from '../components/Rating.vue'
 import BaseInfo from '../components/BaseInfo.vue'
-import { respond } from 'xstate/lib/actions';
+const stakiesStore = useStacikesStore();
 
 // initialize components based on data attribute selectors
 onMounted(() => {
@@ -25,10 +21,10 @@ onMounted(() => {
 /**
  * データ
  */
-const data = ref({
-  baseinfo: {},
-  experienceRateInfo: []
-})
+// const data = ref({
+//   baseinfo: {},
+//   experienceRateInfo: []
+// })
 const rules = {
 initial: { required, minLength: minLength(2), maxLength: maxLength(2), alpha },
 birth_date: { required },
@@ -36,25 +32,10 @@ last_educational_background: { required },
 qualification: { required },
 self_pr: { required }
 }
-const v$ = useVuelidate(rules, data.value.baseinfo)
+const v$ = useVuelidate(rules, stakiesStore.baseinfo.value)
 const isShowLoading = ref(false)
 const inputMode = ref(false)
 
-const fetchExperienceTechnologies = () => {
-  axios.get(`${import.meta.env.VITE_APP_API_URL}experience_technology?user_id=${user.value.username}`)
-  .then((response) => {
-    data.value.experienceRateInfo = response.data
-  }) 
-}
-const fetchBaseInfo = () => {
-  axios.get(`${import.meta.env.VITE_APP_API_URL}base_info?user_id=${user.value.username}`)
-  .then((response) => {
-    console.log(response.data)
-    data.value.baseinfo = response.data[0]
-  }) 
-}
-fetchExperienceTechnologies()
-fetchBaseInfo()
 /**
  * バリデーションルール
  */
@@ -99,15 +80,15 @@ const click_regist = async () => {
   <div class="py-8 bg-gradient-to-br">
     <div class="flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <div class="relative container m-auto px-0 text-gray-500 md:px-0 xl:px-12">
-        <Loading :is-show="isShowLoading" />
+        <Loading :is-show="false" />
         <div class="m-auto">
           <div class="rounded-xl bg-white shadow-xl">
             <div class="p-3 sm:p-3">
               <div class="space-y-4">
               </div>
               <div class="flex bg-white">
-                <BaseInfo :v$="v$" :inputMode="inputMode" :baseInfo="data.baseinfo"
-                  :class="[isShowLoading ? 'opacity-40' : '']" />
+                <BaseInfo :v$="v$" :inputMode="inputMode" :baseInfo="stakiesStore.baseinfo"
+                  :class="[stakiesStore.isLoading() ? 'opacity-40' : '']" />
               </div>
             </div>
             <div class="p-6 sm:p-6">
@@ -118,14 +99,14 @@ const click_regist = async () => {
                   <div class="mt-5">
                     <!-- tabs -->
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-password" :class="[isShowLoading ? 'opacity-40' : '']">
+                      for="grid-password" :class="[stakiesStore.isLoading() ? 'opacity-40' : '']">
                       経験
                     </label>
                     <div class="grid grid-cols-2">
 
-                      <div v-for="item in data.experienceRateInfo" :key="item.id">
+                      <div v-for="item in stakiesStore.experienceRateInfo" :key="item.id">
                         <ExperienceRating :is-show="true" :rate="item" v-model="item.level"
-                        :class="[isShowLoading ? 'opacity-40' : '']" />
+                        :class="[stakiesStore.isLoading() ? 'opacity-40' : '']" />
                       </div>
                     </div>
                   </div>

@@ -1,27 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import axios from 'axios';
-import router from '@/router';
 import MasterData from '../components/MasterData.vue'
 import Loading from '../components/Loading.vue'
 import { toRefs } from 'vue';
-import { Authenticator, useAuthenticator } from '@aws-amplify/ui-vue';
+import { useAuthenticator } from '@aws-amplify/ui-vue';
 import {useStacikesStore} from '@/stores/store'
-import { staticBlock } from '@babel/types';
 
 const stakiesStore = useStacikesStore();
 // https://ui.docs.amplify.aws/vue/connected-components/authenticator/headless
 const { route, user, signOut } = toRefs(useAuthenticator());
 
-const init = () => {
-  stakiesStore.fetchTechnologies()
-  stakiesStore.fetchExperienceTechnologies(user.value.username)
-}
 const click_regist = () => {
   stakiesStore.putExperienceTechnologies(user.value.username)
 }
-
-init()
 
 // TODO : piniaにローディング変数を移植して、ローディングアニメーションが効かなくなった
 </script>
