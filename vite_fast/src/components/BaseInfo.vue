@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import InputComponent from './InputComponent.vue'
 
-defineProps<{
+const data = defineProps<{
   inputMode: boolean,
   baseInfo: Object,
   v$: Object

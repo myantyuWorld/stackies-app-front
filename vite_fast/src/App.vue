@@ -1,17 +1,42 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import { toRefs } from 'vue';
 import Stepper from './components/Stepper.vue'
-import { Authenticator } from "@aws-amplify/ui-vue";
+import { Amplify, Auth } from 'aws-amplify';
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-vue';
 import "@aws-amplify/ui-vue/styles.css";
-
-import { Amplify } from 'aws-amplify';
 import awsconfig from '@/aws-exports';
+import {useStacikesStore} from '@/stores/store'
+
 Amplify.configure(awsconfig);
+
+const stakiesStore = useStacikesStore();
+const services = {
+    async handleSignIn(formData) {
+      let { username, password } = formData;
+      // custom username
+      console.log("hello amplify singin!")
+      var promise = Auth.signIn({
+        username,
+        password
+      });
+
+      stakiesStore.fetchTechnologies()
+      stakiesStore.fetchExperienceTechnologies(username)
+      stakiesStore.fetchBaseInfo(username)
+
+      return promise
+    },
+  };
+
+// TODO : SignInをオーバーライドして、認証されたら、stackiesStoreのinit()を行う >>> 技術マスタ、基本情報、案件対応履歴などを取得しておく（画面でいちいちAPI実行させないようにするため）
+// https://ui.docs.amplify.aws/vue/connected-components/authenticator/customization#override-function-calls
+
 </script>
 
 <template>
   <div class="bg-gradient-to-br ">
-    <authenticator>
+    <authenticator :services="services" initial-state="signIn">
       <template v-slot="{ user, signOut }">
       <div class="mx-auto max-w-7xl px-6 my-5">
         <div class="flex items-center justify-between border-b-2 border-gray-300  md:justify-start md:space-x-10">
