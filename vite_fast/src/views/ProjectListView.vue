@@ -4,12 +4,14 @@ import { onMounted } from 'vue'
 import { initDropdowns, initModals, Modal } from 'flowbite'
 import { useVuelidate } from '@vuelidate/core';
 import { required, maxLength, minLength, alpha } from '@vuelidate/validators';
+import {useStacikesStore} from '@/stores/store'
 
 import ProjectListTable from '../components/ProjectListTable.vue'
 import Loading from '../components/Loading.vue'
 import BaseInfo from '../components/BaseInfo.vue'
 import ExperienceRating from '../components/ExperienceRating.vue'
 import InputComponent from '../components/InputComponent.vue'
+const stakiesStore = useStacikesStore();
 
 // initialize components based on data attribute selectors
 onMounted(() => {
@@ -217,7 +219,7 @@ const clickAddProject = async () => {
               <div class="space-y-4">
               </div>
               <div class="flex bg-white">
-                <BaseInfo :v$="v$" :inputMode="true" :base-info="data.baseinfo" />
+                <BaseInfo :v$="v$" :inputMode="true" :base-info="stakiesStore.baseinfo" />
               </div>
             </div>
             <div class="p-3 sm:p-3">
@@ -226,7 +228,7 @@ const clickAddProject = async () => {
                 経験
               </label>
               <div class="grid grid-cols-3">
-                <div v-for="item in data.experienceRateInfo" :key="item.id">
+                <div v-for="item in stakiesStore.experienceRateInfo" :key="item.id">
                   <ExperienceRating :is-show="false" :rate="item" v-model="item.level" />
                 </div>
               </div>
