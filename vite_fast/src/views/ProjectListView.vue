@@ -297,7 +297,6 @@ const clickAddProject = async () => {
 
             </div>
             <div class="p-1 w-1/2">
-
               <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
                   :class="[isShowLoading ? 'opacity-40' : '']">
@@ -466,18 +465,27 @@ const clickAddProject = async () => {
             </div>
 
             <div class="p-1 w-full">
-
               <div>
                 <div>
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
                     :class="[isShowLoading ? 'opacity-40' : '']">
                     役割
                   </label>
-                  <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.role"
+                  <select id="countries"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  v-model="stakiesStore.projectInfo.role"
+                  >
+                  <option value="0">メンバー</option>
+                    <option value="1">テックリード</option>
+                    <option value="2">SPL</option>
+                    <option value="3">PL</option>
+                    <option value="4">PM</option>
+                </select>
+                  <!-- <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.role"
                     :class="[isShowLoading ? 'opacity-40' : '']" v-model="stakiesStore.projectInfo.role" />
                   <div v-for="error of projectValidate.role.$errors" :key="error.$uid">
                     <div class="text-red-700 font-bold">{{ error.$message }}</div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
