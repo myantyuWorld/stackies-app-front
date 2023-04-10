@@ -4,7 +4,7 @@ import { onMounted } from 'vue'
 import { initDropdowns, initModals, Modal } from 'flowbite'
 import { useVuelidate } from '@vuelidate/core';
 import { required, maxLength, minLength, alpha } from '@vuelidate/validators';
-import {useStacikesStore} from '@/stores/store'
+import { useStacikesStore } from '@/stores/store'
 
 import ProjectListTable from '../components/ProjectListTable.vue'
 import Loading from '../components/Loading.vue'
@@ -28,13 +28,13 @@ const options = {
   backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
   closable: true,
   onHide: () => {
-      console.log('modal is hidden');
+    console.log('modal is hidden');
   },
   onShow: () => {
-      console.log('modal is shown');
+    console.log('modal is shown');
   },
   onToggle: () => {
-      console.log('modal has been toggled');
+    console.log('modal has been toggled');
   }
 };
 const modal = new Modal($targetEl, options);
@@ -258,10 +258,8 @@ const clickAddProject = async () => {
       class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full shadow-lg">
       <div class="relative w-full h-full max-w-2xl md:h-auto">
         <!-- Modal content -->
-        <div 
-          class="relative bg-white rounded-lg shadow-lg dark:bg-gray-700"
-          >
-          <Loading :is-show="isShowLoading"/>
+        <div class="relative bg-white rounded-lg shadow-lg dark:bg-gray-700">
+          <Loading :is-show="isShowLoading" />
           <!-- Modal header -->
           <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white" :class="[isShowLoading ? 'opacity-40' : '']">
@@ -282,15 +280,27 @@ const clickAddProject = async () => {
             <div class="p-1 w-1/2">
               <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                :class="[isShowLoading ? 'opacity-40' : '']">
+                  :class="[isShowLoading ? 'opacity-40' : '']">
                   業種
                 </label>
-                <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.industries"
-                :class="[isShowLoading ? 'opacity-40' : '']"
-                  v-model="projectInfo.industries" />
+                <select id="countries"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  v-model="projectInfo.industries"
+                  >
+                  <option value="0">公共</option>
+                  <option value="1">建築</option>
+                  <option value="2">金融</option>
+                  <option value="3">新聞</option>
+                  <option value="4">フィットネス</option>
+                  <option value="5">業種５</option>
+                  <option value="6">業種６</option>
+                </select>
+
+                <!-- <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.industries"
+                  :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.industries" />
                 <div v-for="error of projectValidate.industries.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
-                </div>
+                </div> -->
               </div>
 
             </div>
@@ -298,12 +308,11 @@ const clickAddProject = async () => {
 
               <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                :class="[isShowLoading ? 'opacity-40' : '']">
+                  :class="[isShowLoading ? 'opacity-40' : '']">
                   システム名
                 </label>
                 <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.systemName"
-                :class="[isShowLoading ? 'opacity-40' : '']"
-                  v-model="projectInfo.systemName" />
+                  :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.systemName" />
                 <div v-for="error of projectValidate.systemName.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
                 </div>
@@ -314,12 +323,26 @@ const clickAddProject = async () => {
 
               <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                :class="[isShowLoading ? 'opacity-40' : '']">
+                  :class="[isShowLoading ? 'opacity-40' : '']">
                   期間（To）
                 </label>
                 <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.period"
-                :class="[isShowLoading ? 'opacity-40' : '']"
-                  v-model="projectInfo.period" />
+                  :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.period" />
+                <div v-for="error of projectValidate.period.$errors" :key="error.$uid">
+                  <div class="text-red-700 font-bold">{{ error.$message }}</div>
+                </div>
+              </div>
+
+            </div>
+            <div class="p-1 w-1/2">
+
+              <div>
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
+                  :class="[isShowLoading ? 'opacity-40' : '']">
+                  期間（From）
+                </label>
+                <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.period"
+                  :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.period" />
                 <div v-for="error of projectValidate.period.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
                 </div>
@@ -330,11 +353,10 @@ const clickAddProject = async () => {
 
               <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                :class="[isShowLoading ? 'opacity-40' : '']">
+                  :class="[isShowLoading ? 'opacity-40' : '']">
                   システム概要
                 </label>
-                <textarea type="text" v-model="projectInfo.businessOverview"
-                :class="[isShowLoading ? 'opacity-40' : '']"
+                <textarea type="text" v-model="projectInfo.businessOverview" :class="[isShowLoading ? 'opacity-40' : '']"
                   class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent text-black-800"></textarea>
                 <div v-for="error of projectValidate.businessOverview.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
@@ -345,12 +367,11 @@ const clickAddProject = async () => {
             <div class="p-1 w-full">
               <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                :class="[isShowLoading ? 'opacity-40' : '']">
+                  :class="[isShowLoading ? 'opacity-40' : '']">
                   言語
                 </label>
                 <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.language"
-                :class="[isShowLoading ? 'opacity-40' : '']"
-                  v-model="projectInfo.language" />
+                  :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.language" />
                 <div v-for="error of projectValidate.language.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
                 </div>
@@ -360,12 +381,11 @@ const clickAddProject = async () => {
             <div class="p-1 w-full">
               <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                :class="[isShowLoading ? 'opacity-40' : '']">
+                  :class="[isShowLoading ? 'opacity-40' : '']">
                   DB/Tool
                 </label>
                 <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.tools"
-                :class="[isShowLoading ? 'opacity-40' : '']"
-                  v-model="projectInfo.tools" />
+                  :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.tools" />
                 <div v-for="error of projectValidate.tools.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
                 </div>
@@ -376,12 +396,11 @@ const clickAddProject = async () => {
 
               <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                :class="[isShowLoading ? 'opacity-40' : '']">
+                  :class="[isShowLoading ? 'opacity-40' : '']">
                   動作環境
                 </label>
                 <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.infra"
-                :class="[isShowLoading ? 'opacity-40' : '']"
-                  v-model="projectInfo.infra" />
+                  :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.infra" />
                 <div v-for="error of projectValidate.infra.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
                 </div>
@@ -395,15 +414,13 @@ const clickAddProject = async () => {
 
               <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                :class="[isShowLoading ? 'opacity-40' : '']">
+                  :class="[isShowLoading ? 'opacity-40' : '']">
                   作業工程
                 </label>
 
-                <ul class="grid w-full gap-6 md:grid-cols-4"
-                :class="[isShowLoading ? 'opacity-40' : '']">
+                <ul class="grid w-full gap-6 md:grid-cols-4" :class="[isShowLoading ? 'opacity-40' : '']">
                   <li>
-                    <input type="checkbox" id="aaa" v-model="projectInfo.workProcess.rd" class="hidden peer"
-                      required="">
+                    <input type="checkbox" id="aaa" v-model="projectInfo.workProcess.rd" class="hidden peer" required="">
                     <label for="aaa"
                       class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                       <div class="block">
@@ -476,12 +493,11 @@ const clickAddProject = async () => {
               <div>
                 <div>
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                  :class="[isShowLoading ? 'opacity-40' : '']">
+                    :class="[isShowLoading ? 'opacity-40' : '']">
                     役割
                   </label>
                   <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.role"
-                  :class="[isShowLoading ? 'opacity-40' : '']"
-                    v-model="projectInfo.role" />
+                    :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.role" />
                   <div v-for="error of projectValidate.role.$errors" :key="error.$uid">
                     <div class="text-red-700 font-bold">{{ error.$message }}</div>
                   </div>
@@ -493,11 +509,9 @@ const clickAddProject = async () => {
           </div>
           <!-- Modal footer -->
           <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <button type="button" @click="clickAddProject"
-            :class="[isShowLoading ? 'opacity-40' : '']"
+            <button type="button" @click="clickAddProject" :class="[isShowLoading ? 'opacity-40' : '']"
               class=" text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">追加</button>
-            <button data-modal-hide="staticModal" type="button"
-            :class="[isShowLoading ? 'opacity-40' : '']"
+            <button data-modal-hide="staticModal" type="button" :class="[isShowLoading ? 'opacity-40' : '']"
               class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">キャンセル</button>
           </div>
         </div>
@@ -505,11 +519,6 @@ const clickAddProject = async () => {
     </div>
 
   </div>
-
-
-
-
-
 </template>
 
 <style>

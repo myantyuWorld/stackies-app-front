@@ -42,7 +42,6 @@ const inputMode = ref(false)
 
 const click_regist = async () => {
   inputMode.value = true
-  console.log(data.value)
   // TODO : API取得時のデータを格納しているが、バリデーションチェックに引っかかる
   const result = await v$.value.$validate();
   console.log('result', result);
