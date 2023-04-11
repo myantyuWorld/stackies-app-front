@@ -181,7 +181,7 @@ const clickAddProject = async () => {
   }
 
   stakiesStore.putProjectInfo(user.value.username)
-  
+
 }
 
 </script>
@@ -262,8 +262,7 @@ const clickAddProject = async () => {
                 </label>
                 <select id="countries"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  v-model="stakiesStore.projectInfo.industries"
-                  >
+                  v-model="stakiesStore.projectInfo.industries">
                   <option value="0">公共</option>
                   <option value="1">建築</option>
                   <option value="2">金融</option>
@@ -274,10 +273,10 @@ const clickAddProject = async () => {
                 </select>
 
                 <!-- <InputComponent :input-mode="inputMode" placeholder="" :value="projectInfo.industries"
-                  :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.industries" />
-                <div v-for="error of projectValidate.industries.$errors" :key="error.$uid">
-                  <div class="text-red-700 font-bold">{{ error.$message }}</div>
-                </div> -->
+                    :class="[isShowLoading ? 'opacity-40' : '']" v-model="projectInfo.industries" />
+                  <div v-for="error of projectValidate.industries.$errors" :key="error.$uid">
+                    <div class="text-red-700 font-bold">{{ error.$message }}</div>
+                  </div> -->
               </div>
 
             </div>
@@ -313,10 +312,10 @@ const clickAddProject = async () => {
             <div class="p-1 w-1/2">
 
               <div>
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                  :class="[isShowLoading ? 'opacity-40' : '']">
-                  期間（From）
-                </label>
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
+                :class="[isShowLoading ? 'opacity-40' : '']">
+                期間（From）
+              </label>
                 <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.period"
                   :class="[isShowLoading ? 'opacity-40' : '']" v-model="stakiesStore.projectInfo.period" />
                 <div v-for="error of projectValidate.period.$errors" :key="error.$uid">
@@ -332,7 +331,8 @@ const clickAddProject = async () => {
                   :class="[isShowLoading ? 'opacity-40' : '']">
                   システム概要
                 </label>
-                <textarea type="text" v-model="stakiesStore.projectInfo.businessOverview" :class="[isShowLoading ? 'opacity-40' : '']"
+                <textarea type="text" v-model="stakiesStore.projectInfo.businessOverview"
+                  :class="[isShowLoading ? 'opacity-40' : '']"
                   class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent text-black-800"></textarea>
                 <div v-for="error of projectValidate.businessOverview.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
@@ -341,18 +341,16 @@ const clickAddProject = async () => {
 
             </div>
             <div class="p-1 w-full">
-              <div>
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
                   :class="[isShowLoading ? 'opacity-40' : '']">
                   言語
                 </label>
-                <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.language"
-                  :class="[isShowLoading ? 'opacity-40' : '']" v-model="stakiesStore.projectInfo.language" />
-                <div v-for="error of projectValidate.language.$errors" :key="error.$uid">
-                  <div class="text-red-700 font-bold">{{ error.$message }}</div>
-                </div>
-              </div>
-
+                <select multiple id="languagies"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  v-model="stakiesStore.projectInfo.language">
+                  <option v-for="item of stakiesStore.languageList" :key="item.name" :value="item.name">{{ item.name }}
+                  </option>
+                </select>
             </div>
             <div class="p-1 w-full">
               <div>
@@ -360,11 +358,17 @@ const clickAddProject = async () => {
                   :class="[isShowLoading ? 'opacity-40' : '']">
                   DB/Tool
                 </label>
-                <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.tools"
+                <!-- <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.tools"
                   :class="[isShowLoading ? 'opacity-40' : '']" v-model="stakiesStore.projectInfo.tools" />
                 <div v-for="error of projectValidate.tools.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
-                </div>
+                </div> -->
+                <select multiple id="tools"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  v-model="stakiesStore.projectInfo.tools">
+                  <option v-for="item of stakiesStore.toolList" :key="item.name" :value="item.name">{{ item.name }}
+                  </option>
+                </select>
               </div>
 
             </div>
@@ -375,11 +379,17 @@ const clickAddProject = async () => {
                   :class="[isShowLoading ? 'opacity-40' : '']">
                   動作環境
                 </label>
-                <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.infra"
+                <!-- <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.infra"
                   :class="[isShowLoading ? 'opacity-40' : '']" v-model="stakiesStore.projectInfo.infra" />
                 <div v-for="error of projectValidate.infra.$errors" :key="error.$uid">
                   <div class="text-red-700 font-bold">{{ error.$message }}</div>
-                </div>
+                </div> -->
+                <select multiple id="infra"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  v-model="stakiesStore.projectInfo.infra">
+                  <option v-for="item of stakiesStore.infraList" :key="item.name" :value="item.name">{{ item.name }}
+                  </option>
+                </select>
               </div>
 
             </div>
@@ -396,7 +406,8 @@ const clickAddProject = async () => {
 
                 <ul class="grid w-full gap-6 md:grid-cols-4" :class="[isShowLoading ? 'opacity-40' : '']">
                   <li>
-                    <input type="checkbox" id="aaa" v-model="stakiesStore.projectInfo.workProcess.rd" class="hidden peer" required="">
+                    <input type="checkbox" id="aaa" v-model="stakiesStore.projectInfo.workProcess.rd" class="hidden peer"
+                      required="">
                     <label for="aaa"
                       class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                       <div class="block">
@@ -472,20 +483,19 @@ const clickAddProject = async () => {
                     役割
                   </label>
                   <select id="countries"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  v-model="stakiesStore.projectInfo.role"
-                  >
-                  <option value="0">メンバー</option>
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    v-model="stakiesStore.projectInfo.role">
+                    <option value="0">メンバー</option>
                     <option value="1">テックリード</option>
                     <option value="2">SPL</option>
                     <option value="3">PL</option>
                     <option value="4">PM</option>
-                </select>
+                  </select>
                   <!-- <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.role"
-                    :class="[isShowLoading ? 'opacity-40' : '']" v-model="stakiesStore.projectInfo.role" />
-                  <div v-for="error of projectValidate.role.$errors" :key="error.$uid">
-                    <div class="text-red-700 font-bold">{{ error.$message }}</div>
-                  </div> -->
+                      :class="[isShowLoading ? 'opacity-40' : '']" v-model="stakiesStore.projectInfo.role" />
+                    <div v-for="error of projectValidate.role.$errors" :key="error.$uid">
+                      <div class="text-red-700 font-bold">{{ error.$message }}</div>
+                    </div> -->
                 </div>
               </div>
 
