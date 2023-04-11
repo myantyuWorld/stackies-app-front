@@ -163,6 +163,7 @@ export const useStacikesStore = defineStore('counter', () => {
     console.log("call putProjectInfo")
 
     axios.post(`${import.meta.env.VITE_APP_API_URL}project_info`, {
+      "user_id": user_id,
       "data": projectInfo.value
     })
     .then((response) => {
