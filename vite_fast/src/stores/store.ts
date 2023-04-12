@@ -33,6 +33,7 @@ export const useStacikesStore = defineStore('counter', () => {
     },
     role: ""
   })
+  const businessHistories = ref([])
 
   function increment() {
     count.value++
@@ -154,6 +155,14 @@ export const useStacikesStore = defineStore('counter', () => {
    */
   const fetchProjectInfo = (user_id: any) => {
     console.log("call fetchProjectInfo")
+    axios.get(`${import.meta.env.VITE_APP_API_URL}project_info?user_id=${user_id}`)
+      .then((response) => {
+        console.log(response.data)
+        businessHistories.value = response.data
+        console.log(businessHistories.value[0].workProcess)
+      })
+      .finally(
+      )
   }
   /**
    * 案件対応情報取得
@@ -194,6 +203,7 @@ export const useStacikesStore = defineStore('counter', () => {
     baseinfo,
     experienceRateInfo,
     projectInfo,
+    businessHistories,
 
     // API
     fetchBaseInfo,

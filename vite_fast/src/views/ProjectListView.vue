@@ -168,6 +168,8 @@ const rules = {
 const v$ = useVuelidate(rules, data.baseinfo)
 const projectValidate = useVuelidate(rulesForProject, stakiesStore.projectInfo)
 
+stakiesStore.fetchProjectInfo(user.value.username)
+
 /**
  * 対応案件の追加ボタン押下時
  */
@@ -223,6 +225,7 @@ const clickAddProject = async () => {
               <div class="flex bg-white">
                 <div class="w-full px-4 shadow-none">
                   <ProjectListTable :business-histories="data.businessHistories" />
+                  <ProjectListTable :business-histories="stakiesStore.businessHistories" />
                 </div>
               </div>
             </div>
