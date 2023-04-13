@@ -145,7 +145,6 @@ export const useStacikesStore = defineStore('counter', () => {
   const fetchBaseInfo = (user_id: any) => {
     axios.get(`${import.meta.env.VITE_APP_API_URL}base_info?user_id=${user_id}`)
       .then((response) => {
-        console.log(response.data)
         baseinfo.value = response.data[0]
       })
   }

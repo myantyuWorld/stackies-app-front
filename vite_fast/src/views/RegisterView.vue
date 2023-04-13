@@ -101,7 +101,7 @@ const click_regist = async () => {
                       for="grid-password" :class="[stakiesStore.isLoading() ? 'opacity-40' : '']">
                       経験
                     </label>
-                    <div class="grid grid-cols-2">
+                    <div class="grid grid-cols-1">
 
                       <div v-for="item in stakiesStore.experienceRateInfo" :key="item.id">
                         <ExperienceRating :is-show="true" :rate="item" v-model="item.level"
