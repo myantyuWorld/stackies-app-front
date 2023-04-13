@@ -4,12 +4,9 @@ const data = defineProps<{
 }>()
 
 const { industries, systemName, period, businessOverview, language, tools, infra, workProcess, role } = data.businessHistory
-console.log(typeof(workProcess))
-console.log(workProcess)
-console.log(JSON.parse(workProcess))
 const workProcessJson = JSON.parse(workProcess)
-console.log(workProcess.rd)
-console.log(workProcess["rd"])
+const rolesMap = ["メンバー","テックリード","SPL","PL","PM"]
+const industriesMap = ["公共","建築","金融","新聞","フィットネス","業種５","業種６"]
 const convertWorkProcess = (isRep: boolean) => {
   return isRep ? "●" : ""
 }
@@ -22,7 +19,7 @@ const convertWorkProcess = (isRep: boolean) => {
       {{ businessOverview }}</td>
   </tr>
   <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ industries }}</td>
+    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ industriesMap[industries] }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ period }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ language }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ tools }}</td>
@@ -41,7 +38,7 @@ const convertWorkProcess = (isRep: boolean) => {
       {{ convertWorkProcess(workProcessJson.it) }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
       {{ convertWorkProcess(workProcessJson.op) }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ role }}</td>
+    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ rolesMap[role] }}</td>
   </tr>
 
 
