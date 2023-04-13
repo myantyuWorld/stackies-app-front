@@ -4,6 +4,12 @@ const data = defineProps<{
 }>()
 
 const { industries, systemName, period, businessOverview, language, tools, infra, workProcess, role } = data.businessHistory
+console.log(typeof(workProcess))
+console.log(workProcess)
+console.log(JSON.parse(workProcess))
+const workProcessJson = JSON.parse(workProcess)
+console.log(workProcess.rd)
+console.log(workProcess["rd"])
 const convertWorkProcess = (isRep: boolean) => {
   return isRep ? "●" : ""
 }
@@ -22,19 +28,19 @@ const convertWorkProcess = (isRep: boolean) => {
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ tools }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ infra }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
-      {{ convertWorkProcess(workProcess.rd) }}</td>
+      {{ convertWorkProcess(workProcessJson.rd) }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
-      {{ convertWorkProcess(workProcess.bd) }}</td>
+      {{ convertWorkProcess(workProcessJson.bd) }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
-      {{ convertWorkProcess(workProcess.dd) }}</td>
+      {{ convertWorkProcess(workProcessJson.dd) }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
-      {{ convertWorkProcess(workProcess.cd) }}</td>
+      {{ convertWorkProcess(workProcessJson.cd) }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
-      {{ convertWorkProcess(workProcess.ut) }}</td>
+      {{ convertWorkProcess(workProcessJson.ut) }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
-      {{ convertWorkProcess(workProcess.it) }}</td>
+      {{ convertWorkProcess(workProcessJson.it) }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
-      {{ convertWorkProcess(workProcess.op) }}</td>
+      {{ convertWorkProcess(workProcessJson.op) }}</td>
     <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ role }}</td>
   </tr>
 

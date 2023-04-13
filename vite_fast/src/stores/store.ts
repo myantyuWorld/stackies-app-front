@@ -157,9 +157,7 @@ export const useStacikesStore = defineStore('counter', () => {
     console.log("call fetchProjectInfo")
     axios.get(`${import.meta.env.VITE_APP_API_URL}project_info?user_id=${user_id}`)
       .then((response) => {
-        console.log(response.data)
         businessHistories.value = response.data
-        console.log(businessHistories.value[0].workProcess)
       })
       .finally(
       )

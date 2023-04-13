@@ -224,7 +224,6 @@ const clickAddProject = async () => {
               </div>
               <div class="flex bg-white">
                 <div class="w-full px-4 shadow-none">
-                  <ProjectListTable :business-histories="data.businessHistories" />
                   <ProjectListTable :business-histories="stakiesStore.businessHistories" />
                 </div>
               </div>
