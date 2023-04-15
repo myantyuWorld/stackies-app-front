@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import MasterData from '../components/MasterData.vue'
-import Loading from '../components/Loading.vue'
 import { toRefs } from 'vue';
 import { useAuthenticator } from '@aws-amplify/ui-vue';
-import {useStacikesStore} from '@/stores/store'
+import { useStacikesStore } from '@/stores/store'
 
 const stakiesStore = useStacikesStore();
 stakiesStore.stepperStatus = 1
 // https://ui.docs.amplify.aws/vue/connected-components/authenticator/headless
-const { route, user, signOut } = toRefs(useAuthenticator());
+const { user } = toRefs(useAuthenticator());
 
 const click_regist = () => {
   stakiesStore.putExperienceTechnologies(user.value.username)
 }
 
-// TODO : piniaにローディング変数を移植して、ローディングアニメーションが効かなくなった
 </script>
 
 <template>
@@ -31,12 +29,13 @@ const click_regist = () => {
                 </p>
               </div>
 
-              <MasterData :list=stakiesStore.languageList name="言語" itemBadgeColor="blue"/>
-              <MasterData :list=stakiesStore.toolList name="DB・ツール" itemBadgeColor="rose"/>
-              <MasterData :list=stakiesStore.infraList name="動作環境" itemBadgeColor="lime"/>
+              <MasterData :list=stakiesStore.languageList name="言語" itemBadgeColor="blue" />
+              <MasterData :list=stakiesStore.toolList name="DB・ツール" itemBadgeColor="rose" />
+              <MasterData :list=stakiesStore.infraList name="動作環境" itemBadgeColor="lime" />
 
             </div>
-            <button @click="click_regist" class="m-3 p-3 bg-green-500 text-white w-full rounded hover:bg-green-600">更新</button>
+            <button @click="click_regist"
+              class="m-3 p-3 bg-green-500 text-white w-full rounded hover:bg-green-600">更新</button>
           </div>
 
         </div>

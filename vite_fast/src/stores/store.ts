@@ -18,7 +18,15 @@ export const useStacikesStore = defineStore('counter', () => {
   // 動作環境
   const infraList = ref([])
   // 基本能力
-  const baseinfo = ref({})
+  const baseinfo = ref({
+    initial: "",
+    birth_date: "",
+    last_educational_background: "",
+    qualification: "",
+    postcode: "",
+    address: "",
+    self_pr: ""
+  })
   // 経験技術
   const experienceRateInfo = ref([])
   // 案件対応情報
@@ -227,7 +235,7 @@ export const useStacikesStore = defineStore('counter', () => {
 
   }
 },
-{
-  persist: true // データの永続化
-}
+  {
+    persist: true // データの永続化
+  }
 );

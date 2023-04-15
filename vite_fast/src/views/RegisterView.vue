@@ -5,7 +5,7 @@ import { onMounted } from 'vue'
 import { initModals } from 'flowbite'
 import { useVuelidate } from '@vuelidate/core';
 import { required, maxLength, minLength, alpha } from '@vuelidate/validators';
-import {useStacikesStore} from '@/stores/store'
+import { useStacikesStore } from '@/stores/store'
 import axios from 'axios';
 import ExperienceRating from '../components/ExperienceRating.vue'
 import Loading from '../components/Loading.vue'
@@ -24,16 +24,12 @@ stakiesStore.stepperStatus = 2
 /**
  * データ
  */
-// const data = ref({
-//   baseinfo: {},
-//   experienceRateInfo: []
-// })
 const rules = {
-initial: { required, minLength: minLength(2), maxLength: maxLength(2), alpha },
-birth_date: { required },
-last_educational_background: { required },
-qualification: { required },
-self_pr: { required }
+  initial: { required, minLength: minLength(2), maxLength: maxLength(2), alpha },
+  birth_date: { required },
+  last_educational_background: { required },
+  qualification: { required },
+  self_pr: { required }
 }
 const v$ = useVuelidate(rules, stakiesStore.baseinfo)
 const isShowLoading = ref(false)
@@ -46,7 +42,7 @@ const inputMode = ref(false)
 const click_regist = async () => {
   inputMode.value = true
   const result = await v$.value.$validate();
-  
+
   if (!result) {
     inputMode.value = false
     stakiesStore.hideLoading();
@@ -60,20 +56,20 @@ const click_regist = async () => {
     }, 1000);
   }).then(() => {
     axios.post(`${import.meta.env.VITE_APP_API_URL}base_info`, {
-      data : {
-        baseinfo : stakiesStore.baseinfo,
-        experienceRateInfo : stakiesStore.experienceRateInfo
+      data: {
+        baseinfo: stakiesStore.baseinfo,
+        experienceRateInfo: stakiesStore.experienceRateInfo
       }
     })
-    .then((response) => {
-      console.log(response)
-      router.push('projects')
-    })
-    .catch((e) => {
-      console.log(e);
-      inputMode.value = false;
-      stakiesStore.hideLoading();
-    })
+      .then((response) => {
+        console.log(response)
+        router.push('projects')
+      })
+      .catch((e) => {
+        console.log(e);
+        inputMode.value = false;
+        stakiesStore.hideLoading();
+      })
   });
 }
 
@@ -90,7 +86,7 @@ const click_regist = async () => {
               <div class="space-y-4">
               </div>
               <div class="flex bg-white">
-                <BaseInfo :v$="v$" :inputMode="inputMode" :baseInfo="stakiesStore.baseinfo"/>
+                <BaseInfo :v$="v$" :inputMode="inputMode" :baseInfo="stakiesStore.baseinfo" />
               </div>
             </div>
             <div class="p-6 sm:p-6">
@@ -100,13 +96,12 @@ const click_regist = async () => {
 
                   <div class="mt-5">
                     <!-- tabs -->
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-password">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                       経験
                     </label>
                     <div class="grid grid-cols-2">
                       <div v-for="item in stakiesStore.experienceRateInfo" :key="item.id">
-                        <ExperienceRating :is-show="true" :rate="item" v-model="item.level"/>
+                        <ExperienceRating :is-show="true" :rate="item" v-model="item.level" />
                       </div>
                     </div>
                   </div>
@@ -126,9 +121,4 @@ const click_regist = async () => {
     </div>
 
   </div>
-
-
-
-
-
 </template>
