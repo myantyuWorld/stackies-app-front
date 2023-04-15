@@ -12,9 +12,6 @@ defineProps<{
     <div class="w-full flex">
       <caption class="text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
         あなたがこれまで経験してきた案件です。
-        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-          hogehogeふがふが
-        </p>
       </caption>
     </div>
     <!-- https://flowbite.com/docs/components/tables/#table-filter -->
