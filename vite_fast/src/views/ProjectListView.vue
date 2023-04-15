@@ -20,124 +20,26 @@ onMounted(() => {
   initDropdowns();
   initModals();
 })
+stakiesStore.stepperStatus = 3
 
 // https://flowbite.com/docs/components/modal/
-const $targetEl = document.getElementById('modalEl');
+// const $targetEl = document.getElementById('modalEl');
 // options with default values
-const options = {
-  placement: 'bottom-right',
-  backdrop: 'dynamic',
-  backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
-  closable: true,
-  onHide: () => {
-    console.log('modal is hidden');
-  },
-  onShow: () => {
-    console.log('modal is shown');
-  },
-  onToggle: () => {
-    console.log('modal has been toggled');
-  }
-};
-const modal = new Modal($targetEl, options);
-
-const data = {
-  baseinfo: {
-    initial: "あああ",
-    birth_date: "1990-08-20",
-    last_educational_background: "ほげほげ専門学校",
-    qualification: "応用情報技術者, AWS CLF",
-    postcode: "7310102",
-    address: "広島県広島市hogehogeのほげ",
-    self_pr: "あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ"
-  },
-  experienceRateInfo: [
-    {
-      id: "1",
-      name: "Java",
-      level: "3",
-    },
-    {
-      id: "2",
-      name: "C#",
-      level: "3",
-    },
-    {
-      id: "3",
-      name: "javascript",
-      level: "3",
-    },
-    {
-      id: "3",
-      name: "javascript",
-      level: "3",
-    },
-    {
-      id: "3",
-      name: "javascript",
-      level: "3",
-    },
-    {
-      id: "3",
-      name: "javascript",
-      level: "3",
-    },
-  ],
-  businessHistories: [
-    {
-      industries: "建設",
-      systemName: "AAA管理システム",
-      period: "2021/01/01(22021/03/30)",
-      businessOverview: "AAAの管理システムを作成、BBBというパッケージソフトとデータ連携を行い、hogehogeしたもの",
-      language: [
-        "Java", "JQuery",
-      ],
-      tools: [
-        "Copilot", "Fargate", "ECS", "Django",
-      ],
-      infra: [
-        "Docker",
-      ],
-      workProcess: {
-        rd: false,
-        bd: true,
-        dd: true,
-        cd: true,
-        ut: true,
-        it: true,
-        op: false,
-      },
-      role: "member"
-    },
-    {
-      industries: "情報通信",
-      systemName: "遠隔監視支援システム",
-      period: "2021/01/01(22021/03/30)",
-      businessOverview: "AIの解析結果を、フロント（Vue.js）に表示したもの、Vuetifyを使用",
-      language: [
-        "Vue.js", "Python", "graphql"
-      ],
-      tools: [
-        "Nuxt.js", "Flask",
-      ],
-      infra: [
-        "Linux",
-      ],
-      workProcess: {
-        rd: false,
-        bd: true,
-        dd: true,
-        cd: true,
-        ut: true,
-        it: true,
-        op: false,
-      },
-      role: "member"
-    }
-  ]
-
-}
-
+// const options = {
+//   placement: 'bottom-right',
+//   backdrop: 'dynamic',
+//   backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
+//   closable: true,
+//   onHide: () => {
+//     console.log('modal is hidden');
+//   },
+//   onShow: () => {
+//     console.log('modal is shown');
+//   },
+//   onToggle: () => {
+//     console.log('modal has been toggled');
+//   }
+// };
 
 const isShowLoading = ref(false)
 const inputMode = ref(false)
@@ -155,7 +57,6 @@ const rulesForProject = {
   // workProcess: { required },
   role: { required },
 }
-// TODO : BaseInfo, 表示モード時、バリデーション不要だが、コンポーネントの作りが悪く、指定しないとエラーとなる
 const rules = {
   initial: {},
   birth_date: {},
@@ -165,7 +66,7 @@ const rules = {
   address: {},
   self_pr: {}
 }
-const v$ = useVuelidate(rules, data.baseinfo)
+const v$ = useVuelidate(rules, stakiesStore.baseinfo)
 const projectValidate = useVuelidate(rulesForProject, stakiesStore.projectInfo)
 
 /**
@@ -173,7 +74,6 @@ const projectValidate = useVuelidate(rulesForProject, stakiesStore.projectInfo)
  */
 const clickAddProject = async () => {
   inputMode.value = true
-  console.log(stakiesStore.projectInfo.value)
 
   const result = await projectValidate.value.$validate();
   console.log('result', result);
@@ -190,8 +90,8 @@ const clickAddProject = async () => {
 
 <template>
   <div class="py-8 bg-gradient-to-br ">
-    <div class="flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <div class="relative container m-auto px-0 text-gray-500 md:px-0 xl:px-12">
+    <div class="flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
+      <div class="text-gray-500 md:px-0 xl:px-12">
         <div class="m-auto">
           <div class="rounded-xl bg-white shadow-xl">
             <div class="p-3 sm:p-3">
@@ -308,10 +208,10 @@ const clickAddProject = async () => {
             <div class="p-1 w-1/2">
 
               <div>
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                :class="[isShowLoading ? 'opacity-40' : '']">
-                期間（From）
-              </label>
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
+                  :class="[isShowLoading ? 'opacity-40' : '']">
+                  期間（From）
+                </label>
                 <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.period"
                   :class="[isShowLoading ? 'opacity-40' : '']" v-model="stakiesStore.projectInfo.period" />
                 <div v-for="error of projectValidate.period.$errors" :key="error.$uid">
@@ -337,16 +237,16 @@ const clickAddProject = async () => {
 
             </div>
             <div class="p-1 w-full">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
-                  :class="[isShowLoading ? 'opacity-40' : '']">
-                  言語
-                </label>
-                <select multiple id="languagies"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  v-model="stakiesStore.projectInfo.language">
-                  <option v-for="item of stakiesStore.languageList" :key="item.name" :value="item.name">{{ item.name }}
-                  </option>
-                </select>
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password"
+                :class="[isShowLoading ? 'opacity-40' : '']">
+                言語
+              </label>
+              <select multiple id="languagies"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                v-model="stakiesStore.projectInfo.language">
+                <option v-for="item of stakiesStore.languageList" :key="item.name" :value="item.name">{{ item.name }}
+                </option>
+              </select>
             </div>
             <div class="p-1 w-full">
               <div>
@@ -476,11 +376,6 @@ const clickAddProject = async () => {
                     <option value="3">PL</option>
                     <option value="4">PM</option>
                   </select>
-                  <!-- <InputComponent :input-mode="inputMode" placeholder="" :value="stakiesStore.projectInfo.role"
-                      :class="[isShowLoading ? 'opacity-40' : '']" v-model="stakiesStore.projectInfo.role" />
-                    <div v-for="error of projectValidate.role.$errors" :key="error.$uid">
-                      <div class="text-red-700 font-bold">{{ error.$message }}</div>
-                    </div> -->
                 </div>
               </div>
 
