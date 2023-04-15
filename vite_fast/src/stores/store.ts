@@ -180,7 +180,7 @@ export const useStacikesStore = defineStore('counter', () => {
   }
 
   const showLoading = () => {
-    isShowLoading.value = false
+    isShowLoading.value = true
   }
   const hideLoading = () => {
     isShowLoading.value = false
