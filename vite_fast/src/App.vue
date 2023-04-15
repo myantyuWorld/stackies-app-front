@@ -2,13 +2,23 @@
 import { RouterView } from 'vue-router'
 import Stepper from '@/components/Stepper.vue'
 import Rating from '@/components/Rating.vue'
-import { Amplify, Auth } from 'aws-amplify';
-import { Authenticator } from '@aws-amplify/ui-vue';
+import { Amplify, Auth, I18n } from 'aws-amplify';
+import { Authenticator, translations } from '@aws-amplify/ui-vue';
 import "@aws-amplify/ui-vue/styles.css";
 import awsconfig from '@/aws-exports';
 import { useStacikesStore } from '@/stores/store'
 
 Amplify.configure(awsconfig);
+I18n.putVocabularies(translations)
+I18n.setLanguage('ja')
+I18n.putVocabularies({
+  ja: {
+    'Sign In': 'ログイン',
+    'Create Account': 'アカウント作成',
+    Username: 'ユーザー名を入力してください。', // Username label
+    Password: 'パスワードを入力してください。', // Password label
+  }
+})
 
 const stakiesStore = useStacikesStore();
 const services = {
