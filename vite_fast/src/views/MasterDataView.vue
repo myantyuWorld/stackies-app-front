@@ -21,31 +21,21 @@ const click_regist = () => {
     <div class="flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <div class="relative container m-auto px-0 text-gray-500 md:px-0 xl:px-12">
         <div class="m-auto">
-          <Loading :is-show="stakiesStore.isLoading()" />
-
           <div class="rounded-xl bg-white shadow-xl">
-
             <div class="p-3 sm:p-8">
-
               <div class="">
-                <h2 class="text-2xl text-cyan-900 font-bold" :class="[stakiesStore.isLoading() ? 'opacity-40' : '']">経験技術の登録</h2>
-                <p class="text-sm font-normal text-gray-500 dark:text-gray-400"
-                  :class="[stakiesStore.isLoading() ? 'opacity-40' : '']">
+                <h2 class="text-2xl text-cyan-900 font-bold">経験技術の登録</h2>
+                <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                   あなたがこれまで経験してきた技術を選択して、登録しましょう。
                 </p>
               </div>
-              <MasterData :list=stakiesStore.languageList name="言語" itemBadgeColor="blue"
-                :class="[stakiesStore.isLoading() ? 'opacity-40' : '']" />
-
-              <MasterData :list=stakiesStore.toolList name="DB・ツール" itemBadgeColor="rose"
-                :class="[stakiesStore.isLoading() ? 'opacity-40' : '']" />
-
-              <MasterData :list=stakiesStore.infraList name="動作環境" itemBadgeColor="lime"
-                :class="[stakiesStore.isLoading() ? 'opacity-40' : '']" />
+              
+              <MasterData :list=stakiesStore.languageList name="言語" itemBadgeColor="blue"/>
+              <MasterData :list=stakiesStore.toolList name="DB・ツール" itemBadgeColor="rose"/>
+              <MasterData :list=stakiesStore.infraList name="動作環境" itemBadgeColor="lime"/>
 
             </div>
-            <button @click="click_regist" :class="[stakiesStore.isLoading() ? 'opacity-40' : '']"
-              class="m-3 p-3 bg-green-500 text-white w-full rounded hover:bg-green-600">更新</button>
+            <button @click="click_regist" class="m-3 p-3 bg-green-500 text-white w-full rounded hover:bg-green-600">更新</button>
           </div>
 
         </div>

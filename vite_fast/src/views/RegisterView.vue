@@ -79,15 +79,13 @@ const click_regist = async () => {
   <div class="py-8 bg-gradient-to-br">
     <div class="flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <div class="relative container m-auto px-0 text-gray-500 md:px-0 xl:px-12">
-        <Loading :is-show="false" />
         <div class="m-auto">
           <div class="rounded-xl bg-white shadow-xl">
             <div class="p-3 sm:p-3">
               <div class="space-y-4">
               </div>
               <div class="flex bg-white">
-                <BaseInfo :v$="v$" :inputMode="inputMode" :baseInfo="stakiesStore.baseinfo"
-                  :class="[stakiesStore.isLoading() ? 'opacity-40' : '']" />
+                <BaseInfo :v$="v$" :inputMode="inputMode" :baseInfo="stakiesStore.baseinfo"/>
               </div>
             </div>
             <div class="p-6 sm:p-6">
@@ -98,14 +96,12 @@ const click_regist = async () => {
                   <div class="mt-5">
                     <!-- tabs -->
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-password" :class="[stakiesStore.isLoading() ? 'opacity-40' : '']">
+                      for="grid-password">
                       経験
                     </label>
                     <div class="grid grid-cols-1">
-
                       <div v-for="item in stakiesStore.experienceRateInfo" :key="item.id">
-                        <ExperienceRating :is-show="true" :rate="item" v-model="item.level"
-                        :class="[stakiesStore.isLoading() ? 'opacity-40' : '']" />
+                        <ExperienceRating :is-show="true" :rate="item" v-model="item.level"/>
                       </div>
                     </div>
                   </div>
