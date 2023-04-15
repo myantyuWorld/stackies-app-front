@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Rating from '../components/Rating.vue'
 </script>
 <template>
   <ol class="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0">
@@ -37,45 +36,4 @@ import Rating from '../components/Rating.vue'
       </span>
     </li>
   </ol>
-
-  
-  <div id="" class=" bg-gray-100  py-8 rounded-xl">
-    <span>技術レベルの目安</span>
-    <div class="flex flex-wrap justify-items-center">
-      <div class="w-1/2 p-1">
-        <Rating rate="1" />
-      </div>
-      <div class="w-1/2 p-1">
-        知識レベル
-      </div>
-      <div class="w-1/2 p-1">
-        <Rating rate="2" />
-      </div>
-      <div class="w-1/2 p-1">
-        開発経験あり
-      </div>
-    </div>
-    <div class="flex flex-wrap justify-items-center">
-      <div class="w-1/2 p-1">
-        <Rating rate="3" />
-      </div>
-      <div class="w-1/2 p-1">
-        開発可能
-      </div>
-      <div class="w-1/2 p-1">
-        <Rating rate="4" />
-      </div>
-      <div class="w-1/2 p-1">
-        技術精通
-      </div>
-    </div>
-    <div class="flex flex-wrap justify-items-center">
-      <div class="w-1/2 p-1">
-        <Rating rate="5" />
-      </div>
-      <div class="w-1/2 p-1">
-        指導可能
-      </div>
-    </div>
-  </div>
 </template>
