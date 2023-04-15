@@ -40,6 +40,7 @@ const services = {
   <div class="bg-gradient-to-br ">
     <authenticator :services="services" initial-state="signIn">
       <template v-slot="{ user, signOut }">
+
         <div class="mx-auto max-w-7xl px-6 my-5">
           <div class="flex items-center justify-between border-b-2 border-gray-300  md:justify-start md:space-x-10">
             <div class="flex">
@@ -62,10 +63,15 @@ const services = {
             <nav class="hidden space-x-10 md:flex">
             </nav>
             <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+              <button type="button"
+                @click="signOut"
+                class="text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <!-- icon666.com - MILLIONS vector ICONS FREE --><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490.667 490.667" style="enable-background:new 0 0 490.667 490.667;" xml:space="preserve"><g><g><g><circle cx="245.333" cy="362.667" r="21.333"/><path d="M245.333,0C110.059,0,0,110.059,0,245.333s110.059,245.333,245.333,245.333s245.333-110.059,245.333-245.333 S380.608,0,245.333,0z M245.333,469.333c-123.52,0-224-100.48-224-224s100.48-224,224-224s224,100.48,224,224 S368.853,469.333,245.333,469.333z"/><path d="M245.333,96C207.104,96,176,127.904,176,167.115c0,5.891,4.776,10.667,10.667,10.667c5.891,0,10.667-4.776,10.667-10.667 c0-27.445,21.536-49.781,48-49.781s48,21.792,48,48.597c0,25.888-22.4,48.587-48,48.587c-5.891,0-10.667,4.776-10.667,10.667V288 c0,5.891,4.776,10.667,10.667,10.667c5.891,0,10.667-4.776,10.667-10.667v-53.013c32.736-5.333,58.667-34.805,58.667-69.056 C314.667,127.371,283.563,96,245.333,96z"/></g></g></g></svg>
+                Help Modal
+              </button>
               <div class="relative inline-flex items-center justify-center w-14 h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                   <span class="font-medium text-gray-600 dark:text-gray-300">{{ user.username }}</span>
               </div>
-
               <button type="button"
                 @click="signOut"
                 class="text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -77,13 +83,11 @@ const services = {
         </div>
         <!-- <h1>Hello {{ user }}!</h1> -->
         <!-- メインコンテンツ -->
-        <div class="flex p-5">
-          <div class="w-1/4 pt-8 pl-4  rounded-xl shadow-lg">
-            <Stepper />
-          </div>
-          <div class="w-3/4">
-            <RouterView />
-          </div>
+        <div class="w-full pt-8 pl-4  rounded-xl shadow-lg">
+          <Stepper />
+        </div>
+        <div class="w-full pt-8 pl-4">
+          <RouterView />
         </div>
       </template>
     </authenticator>
