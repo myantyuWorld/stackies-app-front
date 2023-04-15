@@ -168,8 +168,6 @@ const rules = {
 const v$ = useVuelidate(rules, data.baseinfo)
 const projectValidate = useVuelidate(rulesForProject, stakiesStore.projectInfo)
 
-stakiesStore.fetchProjectInfo(user.value.username)
-
 /**
  * 対応案件の追加ボタン押下時
  */

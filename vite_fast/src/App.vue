@@ -21,9 +21,11 @@ const services = {
         password
       });
 
+      // 各種データ取得系API 実行
       stakiesStore.fetchTechnologies()
       stakiesStore.fetchExperienceTechnologies(username)
       stakiesStore.fetchBaseInfo(username)
+      stakiesStore.fetchProjectInfo(username)
 
       return promise
     },
