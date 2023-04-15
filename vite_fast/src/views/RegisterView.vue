@@ -76,8 +76,8 @@ const click_regist = async () => {
 </script>
 
 <template>
-  <div class="py-8 bg-gradient-to-br">
-    <div class="flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
+  <div class="bg-gradient-to-br">
+    <div class="flex-col items-center justify-center mx-auto md:h-screen lg:py-0">
       <div class="text-gray-500 md:px-0 xl:px-12">
         <Loading :is-show="stakiesStore.isLoading()" />
         <div class="m-auto">

@@ -37,7 +37,7 @@ const services = {
     <authenticator :services="services" initial-state="signIn">
       <template v-slot="{ user, signOut }">
 
-        <div class="mx-auto max-w-7xl px-6 my-5">
+        <div class="mx-auto max-w-7xl px-6 bg-gray-200">
           <div class="flex items-center justify-between border-b-2 border-gray-300  md:justify-start md:space-x-10">
             <div class="flex">
               <div class="w-1/2">
@@ -64,7 +64,7 @@ const services = {
             </nav>
             <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
               <button type="button" data-modal-target="helpModal" data-modal-toggle="helpModal"
-                class="text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                class="text-gray-200   focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 <!-- icon666.com - MILLIONS vector ICONS FREE --><svg version="1.1" id="Layer_1"
                   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 490.667 490.667" style="enable-background:new 0 0 490.667 490.667;" xml:space="preserve">
@@ -83,11 +83,11 @@ const services = {
                 Help Modal
               </button>
               <div
-                class="relative inline-flex items-center justify-center w-14 h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                class="relative inline-flex items-center justify-center w-14 h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 shadow-lg">
                 <span class="font-medium text-gray-600 dark:text-gray-300">{{ user.username }}</span>
               </div>
               <button type="button" @click="signOut"
-                class="text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                class="text-gray-200  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 <!-- icon666.com - MILLIONS vector ICONS FREE --><svg xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24">
                   <g id="Layer_2" data-name="Layer 2">
