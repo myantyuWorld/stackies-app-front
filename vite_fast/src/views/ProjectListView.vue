@@ -206,7 +206,7 @@ const clickAddProject = async () => {
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                 経験
               </label>
-              <div class="grid grid-cols-1">
+              <div class="grid grid-cols-2">
                 <div v-for="item in stakiesStore.experienceRateInfo" :key="item.id">
                   <ExperienceRating :is-show="false" :rate="item" v-model="item.level" />
                 </div>
