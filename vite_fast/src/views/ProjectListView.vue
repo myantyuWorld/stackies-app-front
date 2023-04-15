@@ -20,6 +20,7 @@ onMounted(() => {
   initDropdowns();
   initModals();
 })
+stakiesStore.stepperStatus = 3
 
 // https://flowbite.com/docs/components/modal/
 const $targetEl = document.getElementById('modalEl');

@@ -6,6 +6,7 @@ import { useAuthenticator } from '@aws-amplify/ui-vue';
 import {useStacikesStore} from '@/stores/store'
 
 const stakiesStore = useStacikesStore();
+stakiesStore.stepperStatus = 1
 // https://ui.docs.amplify.aws/vue/connected-components/authenticator/headless
 const { route, user, signOut } = toRefs(useAuthenticator());
 

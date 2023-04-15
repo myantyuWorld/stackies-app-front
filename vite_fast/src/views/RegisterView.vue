@@ -19,6 +19,7 @@ onMounted(() => {
   initModals();
 })
 stakiesStore.hideLoading()
+stakiesStore.stepperStatus = 2
 
 /**
  * データ

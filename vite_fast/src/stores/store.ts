@@ -8,12 +8,20 @@ export const useStacikesStore = defineStore('counter', () => {
   const doubleCount = computed(() => count.value * 2)
 
   const isShowLoading = ref(true)
-  // 技術マスタ
+
+  // 現在のステッパー状態
+  const stepperStatus = ref(1)
+  // 言語
   const languageList = ref([])
+  // DB・ツール
   const toolList = ref([])
+  // 動作環境
   const infraList = ref([])
+  // 基本能力
   const baseinfo = ref({})
+  // 経験技術
   const experienceRateInfo = ref([])
+  // 案件対応情報
   const projectInfo = ref({
     industries: "",
     systemName: "",
@@ -33,6 +41,7 @@ export const useStacikesStore = defineStore('counter', () => {
     },
     role: ""
   })
+  // 案件対応履歴
   const businessHistories = ref([])
 
   function increment() {
@@ -194,6 +203,7 @@ export const useStacikesStore = defineStore('counter', () => {
     count,
     doubleCount,
     increment,
+    stepperStatus,
     languageList,
     toolList,
     infraList,
@@ -218,6 +228,6 @@ export const useStacikesStore = defineStore('counter', () => {
   }
 },
 {
-  persist: true
+  persist: true // データの永続化
 }
 );
