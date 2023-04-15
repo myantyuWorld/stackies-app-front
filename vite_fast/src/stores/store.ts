@@ -111,7 +111,7 @@ export const useStacikesStore = defineStore('counter', () => {
     console.log(selected_list.flat(2))
 
     var data: { name: any; category: any; level: string; }[] = []
-    selected_list.flat(2).forEach((item:any) => {
+    selected_list.flat(2).forEach((item: any) => {
       data.push({
         "name": item.name,
         "category": item.category,
@@ -159,24 +159,24 @@ export const useStacikesStore = defineStore('counter', () => {
         businessHistories.value = response.data
       })
       .finally(
-      )
+    )
   }
   /**
    * 案件対応情報取得
    * @param user_id ユーザーID
    */
-  const putProjectInfo = (user_id:any) => {
+  const putProjectInfo = (user_id: any) => {
     console.log("call putProjectInfo")
 
     axios.post(`${import.meta.env.VITE_APP_API_URL}project_info`, {
       "user_id": user_id,
       "data": projectInfo.value
     })
-    .then((response) => {
-      console.log(response.data)
-    }).catch(error => {
-      console.log(error)
-    })
+      .then((response) => {
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
   }
 
   const showLoading = () => {
@@ -216,4 +216,8 @@ export const useStacikesStore = defineStore('counter', () => {
     isLoading,
 
   }
-})
+},
+{
+  persist: true
+}
+);
