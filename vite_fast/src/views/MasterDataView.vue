@@ -18,8 +18,8 @@ const click_regist = () => {
 
 <template>
   <div class="bg-gradient-to-br ">
-    <div class="flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <div class="relative container m-auto px-0 text-gray-500 md:px-0 xl:px-12">
+    <div class="flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
+      <div class="text-gray-500 md:px-0 xl:px-12">
         <div class="m-auto">
           <div class="rounded-xl bg-white shadow-xl">
             <div class="p-3 sm:p-8">
@@ -29,7 +29,7 @@ const click_regist = () => {
                   あなたがこれまで経験してきた技術を選択して、登録しましょう。
                 </p>
               </div>
-              
+
               <MasterData :list=stakiesStore.languageList name="言語" itemBadgeColor="blue"/>
               <MasterData :list=stakiesStore.toolList name="DB・ツール" itemBadgeColor="rose"/>
               <MasterData :list=stakiesStore.infraList name="動作環境" itemBadgeColor="lime"/>
