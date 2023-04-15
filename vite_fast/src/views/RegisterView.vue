@@ -46,18 +46,23 @@ const click_regist = async () => {
   inputMode.value = true
   const result = await v$.value.$validate();
   
+  if (!result) {
+    inputMode.value = false
+    stakiesStore.hideLoading();
+
+    return
+  }
   new Promise((resolve, reject) => {
-    if (!result) {
-      inputMode.value = false
-      stakiesStore.hideLoading();
-    }
     stakiesStore.showLoading();
     setTimeout(() => {
       resolve();
     }, 1000);
   }).then(() => {
     axios.post(`${import.meta.env.VITE_APP_API_URL}base_info`, {
-      "data" : stakiesStore.baseinfo
+      data : {
+        baseinfo : stakiesStore.baseinfo,
+        experienceRateInfo : stakiesStore.experienceRateInfo
+      }
     })
     .then((response) => {
       console.log(response)
