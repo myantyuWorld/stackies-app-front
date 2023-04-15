@@ -11,12 +11,14 @@ import ExperienceRating from '../components/ExperienceRating.vue'
 import Loading from '../components/Loading.vue'
 import Rating from '../components/Rating.vue'
 import BaseInfo from '../components/BaseInfo.vue'
+import { rejects } from 'assert';
 const stakiesStore = useStacikesStore();
 
 // initialize components based on data attribute selectors
 onMounted(() => {
   initModals();
 })
+stakiesStore.hideLoading()
 
 /**
  * データ
@@ -32,7 +34,7 @@ last_educational_background: { required },
 qualification: { required },
 self_pr: { required }
 }
-const v$ = useVuelidate(rules, stakiesStore.baseinfo.value)
+const v$ = useVuelidate(rules, stakiesStore.baseinfo)
 const isShowLoading = ref(false)
 const inputMode = ref(false)
 
@@ -42,35 +44,31 @@ const inputMode = ref(false)
 
 const click_regist = async () => {
   inputMode.value = true
-  // TODO : API取得時のデータを格納しているが、バリデーションチェックに引っかかる
   const result = await v$.value.$validate();
-  console.log('result', result);
-  console.log('$errors', v$.value.$errors);
-
-  if (!result) {
-    inputMode.value = false
-    return
-  }
-  new Promise((resolve) => {
-    isShowLoading.value = true
+  
+  new Promise((resolve, reject) => {
+    if (!result) {
+      inputMode.value = false
+      stakiesStore.hideLoading();
+    }
+    stakiesStore.showLoading();
     setTimeout(() => {
       resolve();
     }, 1000);
   }).then(() => {
-    isShowLoading.value = false
     axios.post(`${import.meta.env.VITE_APP_API_URL}base_info`, {
-      "data" : data.value
+      "data" : stakiesStore.baseinfo
     })
     .then((response) => {
       console.log(response)
-      isShowLoading.value = false
+      router.push('projects')
     })
-    .catch(
-      isShowLoading.value = true
-    )
-    // router.push('projects')
+    .catch((e) => {
+      console.log(e);
+      inputMode.value = false;
+      stakiesStore.hideLoading();
+    })
   });
-
 }
 
 </script>
@@ -79,6 +77,7 @@ const click_regist = async () => {
   <div class="py-8 bg-gradient-to-br">
     <div class="flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <div class="relative container m-auto px-0 text-gray-500 md:px-0 xl:px-12">
+        <Loading :is-show="stakiesStore.isLoading()" />
         <div class="m-auto">
           <div class="rounded-xl bg-white shadow-xl">
             <div class="p-3 sm:p-3">
