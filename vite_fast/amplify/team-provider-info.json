@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "vitefast40465785": {}
+        "vitefast40465785": {},
+        "userPoolGroups": {}
       }
     }
   }

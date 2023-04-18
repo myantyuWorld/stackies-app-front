@@ -31,6 +31,12 @@ const services = {
       username,
       password
     });
+    console.log(promise)
+    promise.then((result) => {
+      console.log(result.signInUserSession.accessToken)
+      const groups = result.signInUserSession.accessToken.payload['cognito:groups']
+      console.log(groups)
+    })
 
     // 各種データ取得系API 実行
     stakiesStore.fetchTechnologies()

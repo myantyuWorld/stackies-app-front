@@ -1,5 +1,8 @@
 export type AmplifyDependentResourcesAttributes = {
   "auth": {
+    "userPoolGroups": {
+      "OperatorGroupRole": "string"
+    },
     "vitefast40465785": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
