@@ -16,7 +16,7 @@ const stakiesStore = useStacikesStore();
 
               <!-- 検索条件 start -->
               <div class="w-full px-4 shadow-none flex flex-wrap ">
-                <div class="p-1 w-1/2">
+                <div class="p-1 w-full">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                     業種
                   </label>
@@ -31,7 +31,9 @@ const stakiesStore = useStacikesStore();
                     <option value="6">業種６</option>
                   </select>
                 </div>
-                <div class="p-1 w-1/2">
+              </div>
+              <div class="w-full px-4 shadow-none flex flex-wrap ">
+                <div class="p-1 w-1/3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                     言語
                   </label>
@@ -43,11 +45,7 @@ const stakiesStore = useStacikesStore();
                     </option>
                   </select>
                 </div>
-              </div>
-
-
-              <div class="w-full px-4 shadow-none flex flex-wrap ">
-                <div class="p-1 w-1/2">
+                <div class="p-1 w-1/3">
                   <div>
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                       DB/Tool
@@ -60,7 +58,7 @@ const stakiesStore = useStacikesStore();
                     </select>
                   </div>
                 </div>
-                <div class="p-1 w-1/2">
+                <div class="p-1 w-1/3">
                   <div>
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                       動作環境
@@ -100,7 +98,7 @@ const stakiesStore = useStacikesStore();
                 <div class="p-1 w-1/2">
                   <div>
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      システム名
+                      期間(From)
                     </label>
                     <input type="date" name="date"
                       class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent text-black-800">
@@ -109,7 +107,7 @@ const stakiesStore = useStacikesStore();
                 <div class="p-1 w-1/2">
                   <div>
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      氏名
+                      期間(To)
                     </label>
                     <input type="date" name="date"
                       class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent text-black-800">
@@ -117,31 +115,47 @@ const stakiesStore = useStacikesStore();
                 </div>
               </div>
               <div class="w-full px-4 shadow-none flex flex-wrap ">
-                <div class="p-1">
+                <div class="p-1 w-1/2">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                     フェーズで検索
                   </label>
                   <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
                   <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
                   <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
                   <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
                   <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
                   <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
                   <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
                   <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
                   <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
                   <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
                   <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
                   <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
                   <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
                   <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
+                </div>
+                <div class="p-1 w-1/2">
+                  <div>
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                      役割
+                    </label>
+                    <select id="countries"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      v-model="stakiesStore.projectInfo.role">
+                      <option value="0">メンバー</option>
+                      <option value="1">テックリード</option>
+                      <option value="2">SPL</option>
+                      <option value="3">PL</option>
+                      <option value="4">PM</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
@@ -233,6 +247,48 @@ const stakiesStore = useStacikesStore();
 
                   </thead>
                   <tbody class="flex-1 sm:flex-none">
+                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">建材</td>
+                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">ほげたろう</td>
+                      <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
+                        階段、床の拾い、および、その見積もりデータ作成サブシステムの開発を実施</td>
+                    </tr>
+                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                    </tr>
+                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">建材</td>
+                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">ほげたろう</td>
+                      <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
+                        階段、床の拾い、および、その見積もりデータ作成サブシステムの開発を実施</td>
+                    </tr>
+                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
+                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
+                    </tr>
                     <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
                       <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">建材</td>
                       <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">ほげたろう</td>
