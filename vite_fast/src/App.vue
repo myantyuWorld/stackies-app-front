@@ -21,6 +21,7 @@ I18n.putVocabularies({
 })
 
 const stakiesStore = useStacikesStore();
+let groupName = ""
 const services = {
   // https://ui.docs.amplify.aws/vue/connected-components/authenticator/customization#override-function-calls
   async handleSignIn(formData) {
@@ -34,8 +35,8 @@ const services = {
     console.log(promise)
     promise.then((result) => {
       console.log(result.signInUserSession.accessToken)
-      const groups = result.signInUserSession.accessToken.payload['cognito:groups']
-      console.log(groups)
+      groupName = result.signInUserSession.accessToken.payload['cognito:groups'][0]
+      console.log(groupName)
     })
 
     // 各種データ取得系API 実行
@@ -66,7 +67,7 @@ const handleSignOut = (signOut) => {
     <authenticator :services="services" initial-state="signIn">
       <template v-slot="{ user, signOut }">
 
-        <div class="mx-auto max-w-7xl px-6 bg-gray-200">
+        <div class="mx-auto px-6 bg-gray-200">
           <div class="flex items-center justify-between border-b-2 border-gray-300  md:justify-start md:space-x-10">
             <div class="flex">
               <div class="w-1/2">
@@ -76,6 +77,7 @@ const handleSignOut = (signOut) => {
                   <path fill="#" d="" />
                 </svg>
               </div>
+              
             </div>
             <div class="-my-2 -mr-2 md:hidden">
               <button type="button"
@@ -91,6 +93,9 @@ const handleSignOut = (signOut) => {
             </div>
             <nav class="hidden space-x-10 md:flex">
             </nav>
+            <div class="w-1/2" v:if="groupName == 'God'">
+                God
+            </div>
             <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
               <button type="button" data-modal-target="helpModal" data-modal-toggle="helpModal"
                 class="text-gray-200   focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
