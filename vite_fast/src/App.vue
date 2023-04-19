@@ -47,6 +47,19 @@ const services = {
     return promise
   },
 };
+const handleSignOut = (signOut) => {
+    console.log("handleSignOut")
+    // AmplifyのSignout処理
+    signOut()
+
+    // セッションとCookieの削除
+    sessionStorage.clear()
+    document.cookie = 'foobar=; max-age=0'
+
+    stakiesStore.$reset()
+
+  }
+
 </script>
 <template>
   <div class="bg-gradient-to-br ">
@@ -102,7 +115,7 @@ const services = {
                 class="relative inline-flex items-center justify-center w-14 h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 shadow-lg">
                 <span class="font-medium text-gray-600 dark:text-gray-300">{{ user.username }}</span>
               </div>
-              <button type="button" @click="signOut"
+              <button type="button" @click="handleSignOut(signOut)"
                 class="text-gray-200  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 <!-- icon666.com - MILLIONS vector ICONS FREE --><svg xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24">

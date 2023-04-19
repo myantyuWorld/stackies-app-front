@@ -206,6 +206,45 @@ export const useStacikesStore = defineStore('counter', () => {
     return isShowLoading.value
   }
 
+  // https://pinia.vuejs.org/core-concepts/state.html#resetting-the-state
+  function $reset() {
+    stepperStatus.value = 1
+    languageList.value = []
+    baseinfo.value = {
+      initial: "",
+      birth_date: "",
+      last_educational_background: "",
+      qualification: "",
+      postcode: "",
+      address: "",
+      self_pr: ""
+    }
+    toolList.value = []
+    infraList.value = []
+    experienceRateInfo.value = []
+    projectInfo.value = {
+      industries: "",
+      systemName: "",
+      period: "",
+      businessOverview: "",
+      language: "",
+      tools: "",
+      infra: "",
+      workProcess: {
+        rd: false,
+        bd: false,
+        dd: false,
+        cd: false,
+        ut: false,
+        it: false,
+        op: false,
+      },
+      role: ""
+    },
+    businessHistories.value = []
+  }
+
+
   return {
     // Variables
     count,
@@ -232,6 +271,9 @@ export const useStacikesStore = defineStore('counter', () => {
     showLoading,
     hideLoading,
     isLoading,
+
+    // 
+    $reset,
 
   }
 },
