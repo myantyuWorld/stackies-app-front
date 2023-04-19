@@ -93,7 +93,7 @@ const handleSignOut = (signOut) => {
             </div>
             <nav class="hidden space-x-10 md:flex">
             </nav>
-            <div class="w-1/2" v:if="groupName == 'God'">
+            <div class="w-1/2" v:if="groupName === 'God'">
                 <a><router-link to="/search_projects">案件検索</router-link></a>
             </div>
             <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
