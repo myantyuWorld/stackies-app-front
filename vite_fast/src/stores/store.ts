@@ -53,6 +53,18 @@ export const useStacikesStore = defineStore('counter', () => {
   const businessHistories = ref([])
   const businessHistoriesAll = ref([])
 
+  // 案件対応履歴　検索画面　検索ワード
+  const search = ref("");
+  /**
+   * フィルター済み案件対応履歴
+  */
+  const filterBusinessHistoriesAll = computed(() => {
+    return businessHistoriesAll.value.filter(item => {
+      return item.systemName.indexOf(search.value) > -1
+        || item.user_id.indexOf(search.value) > -1
+    })
+  })
+
   function increment() {
     count.value++
   }
@@ -189,7 +201,7 @@ export const useStacikesStore = defineStore('counter', () => {
     axios.get(`${import.meta.env.VITE_APP_API_URL}project_info?user_id=${""}`)
       .then((response) => {
         var list = []
-        for (var item of response.data){
+        for (var item of response.data) {
           list.push({
             user_id: item.user_id.S,
             project_id: item.project_id.S,
@@ -272,7 +284,8 @@ export const useStacikesStore = defineStore('counter', () => {
       },
       role: ""
     },
-    businessHistories.value = []
+      businessHistories.value = []
+    search.value = ""
   }
 
 
@@ -290,6 +303,8 @@ export const useStacikesStore = defineStore('counter', () => {
     projectInfo,
     businessHistories,
     businessHistoriesAll,
+    filterBusinessHistoriesAll,
+    search,
 
     // API
     fetchBaseInfo,
