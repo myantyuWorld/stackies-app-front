@@ -21,6 +21,7 @@ defineProps<{
 
         <!-- SP版にした際に、表示する場合、明細件数と同じ数のヘッダーが必要 -->
         <tr class="bg-gray-100 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+          <th colspan="2" class="p-4 text-center text-sm">対応者</th>
           <th colspan="2" class="p-4 text-center text-sm">システム名</th>
           <th colspan="12" class="p-4 text-center text-sm">業務概要</th>
         </tr>

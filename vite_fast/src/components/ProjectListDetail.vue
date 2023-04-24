@@ -3,7 +3,7 @@ const data = defineProps<{
   businessHistory: Object,
 }>()
 
-const { industries, systemName, period, businessOverview, language, tools, infra, workProcess, role } = data.businessHistory
+const { industries, systemName, period, businessOverview, language, tools, infra, workProcess, role, user_id } = data.businessHistory
 const workProcessJson = JSON.parse(workProcess)
 const rolesMap = ["メンバー","テックリード","SPL","PL","PM"]
 const industriesMap = ["公共","建築","金融","新聞","フィットネス","業種５","業種６"]
@@ -13,6 +13,8 @@ const convertWorkProcess = (isRep: boolean) => {
 </script>
 <template>
   <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+    <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm font-bold">
+      {{ user_id }}</td>
     <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
       {{ systemName }}</td>
     <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">

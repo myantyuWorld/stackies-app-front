@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useStacikesStore } from '@/stores/store'
 import InputComponent from '@/components/InputComponent.vue'
+import ProjectListTable from '@/components/ProjectListTable.vue'
 const stakiesStore = useStacikesStore();
 </script>
 
@@ -382,173 +383,35 @@ const stakiesStore = useStacikesStore();
                   </caption>
                 </div>
                 <!-- https://flowbite.com/docs/components/tables/#table-filter -->
-                <table
-                  class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5 table-auto">
-                  <thead class="text-cyan-900">
-
-                    <!-- SP版にした際に、表示する場合、明細件数と同じ数のヘッダーが必要 -->
-                    <tr
-                      class="bg-gray-100 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                      <th colspan="2" class="p-4 text-center text-sm">システム名</th>
-                      <th colspan="2" class="p-4 text-center text-sm">対応者</th>
-                      <th colspan="12" class="p-4 text-center text-sm">業務概要</th>
-                    </tr>
-                    <tr
-                      class="bg-gray-100 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                      <th rowspan="2" class="p-2 text-center text-sm">業種</th>
-                      <th rowspan="2" class="p-2 text-center text-sm">期間</th>
-                      <th rowspan="2" class="p-2 text-center text-sm">言語</th>
-                      <th rowspan="2" class="p-2 text-center text-sm">DB/Tool</th>
-                      <th rowspan="2" class="p-2 text-center text-sm">動作環境</th>
-                      <th colspan="7" class="p-2 text-center text-sm">作業工程</th>
-                      <th rowspan="2" class="p-2 text-center text-sm">役割</th>
-                    </tr>
-                    <tr
-                      class="bg-gray-100 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-                      <th rowspan="" class="p-2 text-center text-sm">分析</th>
-                      <th rowspan="" class="p-2 text-center text-sm">要件</th>
-                      <th rowspan="" class="p-2 text-center text-sm">基本</th>
-                      <th rowspan="" class="p-2 text-center text-sm">詳細</th>
-                      <th rowspan="" class="p-2 text-center text-sm">製造</th>
-                      <th rowspan="" class="p-2 text-center text-sm">評価</th>
-                      <th rowspan="" class="p-2 text-center text-sm">運用</th>
-                    </tr>
-
-
-                  </thead>
-                  <tbody class="flex-1 sm:flex-none">
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">建材</td>
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">ほげたろう</td>
-                      <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
-                        階段、床の拾い、および、その見積もりデータ作成サブシステムの開発を実施</td>
-                    </tr>
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                    </tr>
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">建材</td>
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">ほげたろう</td>
-                      <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
-                        階段、床の拾い、および、その見積もりデータ作成サブシステムの開発を実施</td>
-                    </tr>
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                    </tr>
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">建材</td>
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">ほげたろう</td>
-                      <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
-                        階段、床の拾い、および、その見積もりデータ作成サブシステムの開発を実施</td>
-                    </tr>
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                    </tr>
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">建材</td>
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">ほげたろう</td>
-                      <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
-                        階段、床の拾い、および、その見積もりデータ作成サブシステムの開発を実施</td>
-                    </tr>
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                    </tr>
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">建材</td>
-                      <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">ほげたろう</td>
-                      <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
-                        階段、床の拾い、および、その見積もりデータ作成サブシステムの開発を実施</td>
-                    </tr>
-                    <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">Test}</td>
-                    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">Test</td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="flex flex-col items-center">
-                <!-- Help text -->
-                <span class="text-sm text-gray-700 dark:text-gray-400">
-                  Showing <span class="font-semibold text-gray-900 dark:text-white">1</span> to <span
-                    class="font-semibold text-gray-900 dark:text-white">10</span> of <span
-                    class="font-semibold text-gray-900 dark:text-white">100</span> Entries
-                </span>
-                <!-- Buttons -->
-                <div class="inline-flex mt-2 xs:mt-0">
-                  <button
-                    class="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    Prev
-                  </button>
-                  <button
-                    class="px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    Next
-                  </button>
+                <div class="w-full px-4 shadow-none">
+                  <ProjectListTable :business-histories="stakiesStore.businessHistoriesAll" />
+                </div>
+                <div class="flex flex-col items-center">
+                  <!-- Help text -->
+                  <span class="text-sm text-gray-700 dark:text-gray-400">
+                    Showing <span class="font-semibold text-gray-900 dark:text-white">1</span> to <span
+                      class="font-semibold text-gray-900 dark:text-white">10</span> of <span
+                      class="font-semibold text-gray-900 dark:text-white">100</span> Entries
+                  </span>
+                  <!-- Buttons -->
+                  <div class="inline-flex mt-2 xs:mt-0">
+                    <button
+                      class="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                      Prev
+                    </button>
+                    <button
+                      class="px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                      Next
+                    </button>
+                  </div>
                 </div>
               </div>
+
             </div>
 
           </div>
-
         </div>
       </div>
     </div>
-  </div>
-</main></template>
+  </main>
+</template>

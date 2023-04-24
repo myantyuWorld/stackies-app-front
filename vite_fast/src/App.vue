@@ -44,6 +44,7 @@ const services = {
     stakiesStore.fetchExperienceTechnologies(username)
     stakiesStore.fetchBaseInfo(username)
     stakiesStore.fetchProjectInfo(username)
+    stakiesStore.fetchProjectInfoAll("")
 
     return promise
   },
