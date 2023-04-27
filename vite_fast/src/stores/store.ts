@@ -62,6 +62,12 @@ export const useStacikesStore = defineStore('counter', () => {
     return businessHistoriesAll.value.filter(item => {
       return item.systemName.indexOf(search.value) > -1
         || item.user_id.indexOf(search.value) > -1
+        || item.industries.indexOf(search.value) > 1
+        || item.businessOverview.indexOf(search.value) > 1
+        || item.language.indexOf(search.value) > 1
+        || item.tools.indexOf(search.value) > 1
+        || item.infra.indexOf(search.value) > 1
+        || item.role.indexOf(search.value) > 1
     })
   })
 
