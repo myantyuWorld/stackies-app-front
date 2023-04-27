@@ -13,34 +13,34 @@ const convertWorkProcess = (isRep: boolean) => {
 </script>
 <template>
   <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-    <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm font-bold">
+    <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-2 text-sm font-bold">
       {{ user_id }}</td>
-    <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
+    <td colspan="2" class="border-grey-light border hover:bg-gray-100 p-2 text-sm">
       {{ systemName }}</td>
-    <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-3 text-sm">
+    <td colspan="12" class="border-grey-light border hover:bg-gray-100 p-2 text-sm">
       {{ businessOverview }}</td>
   </tr>
   <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ industriesMap[industries] }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ period }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ language }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ tools }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ infra }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm">{{ industriesMap[industries] }}</td>
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm">{{ period }}</td>
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm">{{ language }}</td>
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm">{{ tools }}</td>
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm">{{ infra }}</td>
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm text-center">
       {{ convertWorkProcess(workProcessJson.rd) }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm text-center">
       {{ convertWorkProcess(workProcessJson.bd) }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm text-center">
       {{ convertWorkProcess(workProcessJson.dd) }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm text-center">
       {{ convertWorkProcess(workProcessJson.cd) }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm text-center">
       {{ convertWorkProcess(workProcessJson.ut) }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm text-center">
       {{ convertWorkProcess(workProcessJson.it) }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm text-center">
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm text-center">
       {{ convertWorkProcess(workProcessJson.op) }}</td>
-    <td class="border-grey-light border hover:bg-gray-100 p-3 text-sm">{{ rolesMap[role] }}</td>
+    <td class="border-grey-light border hover:bg-gray-100 p-2 text-sm">{{ rolesMap[role] }}</td>
   </tr>
 
 

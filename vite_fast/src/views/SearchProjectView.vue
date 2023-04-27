@@ -12,8 +12,9 @@ const stakiesStore = useStacikesStore();
         <div class="text-gray-500 md:px-0 xl:px-12">
           <div class="m-auto">
 
+            <!-- TODO：お知らせ機能は、管理者のダッシュボード画面での表示が適切。 -->
             <!-- お知らせ -->
-            <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="grid-password">
+            <!-- <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="grid-password">
               お知らせ
             </label>
             <div class="rounded-xl bg-white shadow-xl p-3 my-5 overflow-y-scroll h-64">
@@ -177,278 +178,79 @@ const stakiesStore = useStacikesStore();
                 </div>
 
 
+              </div> -->
+
+
+            <div class="m-4">
+              <!-- https://flowbite.com/docs/components/tables/#table-caption -->
+              <div class="w-full flex">
+                <caption class="text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                  会社にスタックされた案件・技術情報の結果です。
+                </caption>
               </div>
-
-            </div>
-
-            <label class="block uppercase tracking-wide text-gray-700 text-base font-bold mb-2" for="grid-password">
-              検索条件
-            </label>
-            <div class="rounded-xl bg-white shadow-xl p-3 my-5">
-              <!-- 検索条件 start -->
-              <div class="w-full px-4 shadow-none flex flex-wrap ">
-                <div class="p-1 w-full">
-                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                    業種
-                  </label>
-                  <select id="countries"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option value="0">公共</option>
-                    <option value="1">建築</option>
-                    <option value="2">金融</option>
-                    <option value="3">新聞</option>
-                    <option value="4">フィットネス</option>
-                    <option value="5">業種５</option>
-                    <option value="6">業種６</option>
-                  </select>
-                </div>
-              </div>
-              <div class="w-full px-4 shadow-none flex flex-wrap ">
-                <div class="p-1 w-1/3">
-                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                    言語
-                  </label>
-                  <select multiple id="languagies"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    v-model="stakiesStore.projectInfo.language">
-                    <option v-for="item of stakiesStore.languageList" :key="item.name" :value="item.name">{{ item.name
-                    }}
-                    </option>
-                  </select>
-                </div>
-                <div class="p-1 w-1/3">
-                  <div>
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      DB/Tool
-                    </label>
-                    <select multiple id="tools"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      v-model="stakiesStore.projectInfo.tools">
-                      <option v-for="item of stakiesStore.toolList" :key="item.name" :value="item.name">{{ item.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="p-1 w-1/3">
-                  <div>
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      動作環境
-                    </label>
-                    <select multiple id="infra"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      v-model="stakiesStore.projectInfo.infra">
-                      <option v-for="item of stakiesStore.infraList" :key="item.name" :value="item.name">{{ item.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="w-full px-4 shadow-none flex flex-wrap ">
-                <div class="p-1 w-1/2">
-                  <div>
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      システム名
-                    </label>
-                    <InputComponent :input-mode="false" placeholder="" />
-                  </div>
-                </div>
-                <div class="p-1 w-1/2">
-                  <div>
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      氏名
-                    </label>
-                    <!-- <InputComponent :value="stakiesStore.search" :input-mode="false" placeholder=""/> -->
-                    <input
-                      class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent text-black-800"
-                      type="text" v-model="stakiesStore.search">
-                  </div>
-                </div>
+              <!-- https://flowbite.com/docs/components/tables/#table-filter -->
+              <div class="w-full px-4 shadow-none ">
+                <ProjectListTable :business-histories="stakiesStore.filterBusinessHistoriesAll" />
+                <nav class="flex items-center justify-between pt-4" aria-label="Table navigation">
+                  <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span
+                      class="font-semibold text-gray-900 dark:text-white">1-10</span> of <span
+                      class="font-semibold text-gray-900 dark:text-white">1000</span></span>
+                  <ul class="inline-flex items-center -space-x-px">
+                    <li>
+                      <a href="#"
+                        class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Previous</span>
+                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+                    </li>
+                    <li>
+                      <a href="#" aria-current="page"
+                        class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Next</span>
+                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
               </div>
 
 
-              <div class="w-full px-4 shadow-none flex flex-wrap ">
-                <div class="p-1 w-1/2">
-                  <div>
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      期間(From)
-                    </label>
-                    <input type="date" name="date"
-                      class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent text-black-800">
-                  </div>
-                </div>
-                <div class="p-1 w-1/2">
-                  <div>
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      期間(To)
-                    </label>
-                    <input type="date" name="date"
-                      class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent text-black-800">
-                  </div>
-                </div>
-              </div>
-              <div class="w-full px-4 shadow-none flex flex-wrap ">
-                <div class="p-1 w-1/2">
-                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                    フェーズで検索
-                  </label>
-                  <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
-                  <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
-                  <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
-                  <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
-                  <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
-                  <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
-                  <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
-                  <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
-                  <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
-                  <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
-                  <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
-                  <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
-                  <input type="checkbox"
-                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 m-1">
-                  <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">要件定義</label>
-                </div>
-                <div class="p-1 w-1/2">
-                  <div>
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                      役割
-                    </label>
-                    <select id="countries"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      v-model="stakiesStore.projectInfo.role">
-                      <option value="0">メンバー</option>
-                      <option value="1">テックリード</option>
-                      <option value="2">SPL</option>
-                      <option value="3">PL</option>
-                      <option value="4">PM</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button type="button" @click="clickSearchProjects"
-                  class=" text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">検索</button>
-                <button data-modal-hide="staticModal" type="button"
-                  class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">クリア</button>
-              </div>
-
-
-              <div class="w-full px-4 shadow-none flex flex-wrap ">
-                <div class="m-1">
-                  <button type="button"
-                    class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    公共
-                    <span
-                      class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
-                      2
-                    </span>
-                  </button>
-                </div>
-                <div class="m-1">
-                  <button type="button"
-                    class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    C#
-                    <span
-                      class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
-                      10
-                    </span>
-                  </button>
-                </div>
-                <div class="m-1">
-                  <button type="button"
-                    class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    AWS Lambda
-                    <span
-                      class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
-                      10
-                    </span>
-                  </button>
-                </div>
-
-              </div>
-              <!-- 案件対応履歴　検索結果 -->
-
-              <div class="m-4">
-                <!-- https://flowbite.com/docs/components/tables/#table-caption -->
-                <div class="w-full flex">
-                  <caption
-                    class="text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                    会社にスタックされた案件・技術情報の結果です。
-                  </caption>
-                </div>
-                <!-- https://flowbite.com/docs/components/tables/#table-filter -->
-                <div class="w-full px-4 shadow-none">
-                  <ProjectListTable :business-histories="stakiesStore.filterBusinessHistoriesAll" />
-                  <nav class="flex items-center justify-between pt-4" aria-label="Table navigation">
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span
-                        class="font-semibold text-gray-900 dark:text-white">1-10</span> of <span
-                        class="font-semibold text-gray-900 dark:text-white">1000</span></span>
-                    <ul class="inline-flex items-center -space-x-px">
-                      <li>
-                        <a href="#"
-                          class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                          <span class="sr-only">Previous</span>
-                          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                              clip-rule="evenodd"></path>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                      </li>
-                      <li>
-                        <a href="#" aria-current="page"
-                          class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                          <span class="sr-only">Next</span>
-                          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                              clip-rule="evenodd"></path>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-
-
-              </div>
-
-            </div>
 
           </div>
+
         </div>
       </div>
+    </div>
     </div>
   </main>
 </template>

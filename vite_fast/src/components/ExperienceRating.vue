@@ -11,7 +11,7 @@ defineProps<{
 </script>
 <template>
 
-  <div class="justify-between p-1 rounded-lg bg-white shadow-indigo-50 shadow-md my-2">
+  <div class="justify-between rounded-lg bg-white shadow-indigo-50 shadow-md my-2">
     <div class="flex flex-wrap h-10 leading-10 m-3">
 
       <!-- <MasterDataItem :name=rate.name /> -->
