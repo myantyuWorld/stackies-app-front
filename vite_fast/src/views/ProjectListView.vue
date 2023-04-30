@@ -58,12 +58,8 @@ const rulesForProject = {
   role: { required },
 }
 const rules = {
-  initial: {},
-  birth_date: {},
-  last_educational_background: {},
+  user_id: {},
   qualification: {},
-  postcode: {},
-  address: {},
   self_pr: {}
 }
 const v$ = useVuelidate(rules, stakiesStore.baseinfo)

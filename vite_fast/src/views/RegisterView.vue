@@ -25,9 +25,7 @@ stakiesStore.stepperStatus = 2
  * データ
  */
 const rules = {
-  initial: { required, minLength: minLength(2), maxLength: maxLength(2), alpha },
-  birth_date: { required },
-  last_educational_background: { required },
+  user_id: { required },
   qualification: { required },
   self_pr: { required }
 }
@@ -46,6 +44,8 @@ const click_regist = async () => {
   if (!result) {
     inputMode.value = false
     stakiesStore.hideLoading();
+
+    console.log("vaildate error!")
 
     return
   }
