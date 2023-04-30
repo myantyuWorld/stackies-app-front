@@ -19,12 +19,8 @@ export const useStacikesStore = defineStore('counter', () => {
   const infraList = ref([])
   // 基本能力
   const baseinfo = ref({
-    initial: "",
-    birth_date: "",
-    last_educational_background: "",
+    user_id: "",
     qualification: "",
-    postcode: "",
-    address: "",
     self_pr: ""
   })
   // 経験技術
