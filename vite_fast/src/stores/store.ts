@@ -19,12 +19,8 @@ export const useStacikesStore = defineStore('counter', () => {
   const infraList = ref([])
   // 基本能力
   const baseinfo = ref({
-    initial: "",
-    birth_date: "",
-    last_educational_background: "",
+    user_id: "",
     qualification: "",
-    postcode: "",
-    address: "",
     self_pr: ""
   })
   // 経験技術
@@ -35,9 +31,9 @@ export const useStacikesStore = defineStore('counter', () => {
     systemName: "",
     period: "",
     businessOverview: "",
-    language: "",
-    tools: "",
-    infra: "",
+    language: [],
+    tools: [],
+    infra: [],
     workProcess: {
       rd: false,
       bd: false,
@@ -51,6 +47,25 @@ export const useStacikesStore = defineStore('counter', () => {
   })
   // 案件対応履歴
   const businessHistories = ref([])
+  const businessHistoriesAll = ref([])
+
+  // 案件対応履歴　検索画面　検索ワード
+  const search = ref("");
+  /**
+   * フィルター済み案件対応履歴
+  */
+  const filterBusinessHistoriesAll = computed(() => {
+    return businessHistoriesAll.value.filter(item => {
+      return item.systemName.indexOf(search.value) > -1
+        || item.user_id.indexOf(search.value) > -1
+        || item.industries.indexOf(search.value) > 1
+        || item.businessOverview.indexOf(search.value) > 1
+        || item.language.indexOf(search.value) > 1
+        || item.tools.indexOf(search.value) > 1
+        || item.infra.indexOf(search.value) > 1
+        || item.role.indexOf(search.value) > 1
+    })
+  })
 
   function increment() {
     count.value++
@@ -179,6 +194,36 @@ export const useStacikesStore = defineStore('counter', () => {
     )
   }
   /**
+   * 案件対応情報（全件取得）
+   * TODO : 現在は、データ数が少ないので、問題ないが、API側#DynamoDBをScanするとき、Limitで取得上限を設定する
+   * TODO : boto3#dynamodbのquery, scanで取得結果が異なるので、下記変換処理が必要、API側でJSON形式を整形して返すようにする
+   */
+  const fetchProjectInfoAll = (user_id: any) => {
+    console.log("call fetchProjectInfoAll")
+    axios.get(`${import.meta.env.VITE_APP_API_URL}project_info?user_id=${""}`)
+      .then((response) => {
+        var list = []
+        for (var item of response.data) {
+          list.push({
+            user_id: item.user_id.S,
+            project_id: item.project_id.S,
+            industries: item.industries.S,
+            systemName: item.systemName.S,
+            period: item.period.S,
+            businessOverview: item.businessOverview.S,
+            language: item.language.S,
+            tools: item.tools.S,
+            infra: item.infra.S,
+            workProcess: item.workProcess.S,
+            role: item.role.S,
+          })
+          businessHistoriesAll.value = list
+        }
+      })
+      .finally(
+    )
+  }
+  /**
    * 案件対応情報取得
    * @param user_id ユーザーID
    */
@@ -227,9 +272,9 @@ export const useStacikesStore = defineStore('counter', () => {
       systemName: "",
       period: "",
       businessOverview: "",
-      language: "",
-      tools: "",
-      infra: "",
+      language: [],
+      tools: [],
+      infra: [],
       workProcess: {
         rd: false,
         bd: false,
@@ -241,7 +286,8 @@ export const useStacikesStore = defineStore('counter', () => {
       },
       role: ""
     },
-    businessHistories.value = []
+      businessHistories.value = []
+    search.value = ""
   }
 
 
@@ -258,6 +304,9 @@ export const useStacikesStore = defineStore('counter', () => {
     experienceRateInfo,
     projectInfo,
     businessHistories,
+    businessHistoriesAll,
+    filterBusinessHistoriesAll,
+    search,
 
     // API
     fetchBaseInfo,
@@ -266,6 +315,7 @@ export const useStacikesStore = defineStore('counter', () => {
     putExperienceTechnologies,
     fetchProjectInfo,
     putProjectInfo,
+    fetchProjectInfoAll,
 
     // Method
     showLoading,

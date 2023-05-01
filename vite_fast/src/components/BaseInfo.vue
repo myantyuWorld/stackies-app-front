@@ -15,15 +15,15 @@ const data = defineProps<{
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
           イニシャル
         </label>
-        <InputComponent :input-mode="inputMode" placeholder="イニシャル" :value="baseInfo.initial"
-          v-model="baseInfo.initial" />
-        <div v-for="error of v$.initial.$errors" :key="error.$uid">
+        <InputComponent :input-mode="inputMode" placeholder="イニシャル" :value="baseInfo.user_id"
+          v-model="baseInfo.user_id" />
+        <div v-for="error of v$.user_id.$errors" :key="error.$uid">
           <div class="text-red-700 font-bold">{{ error.$message }}</div>
         </div>
       </div>
 
     </div>
-    <div class="p-1 w-1/2">
+    <!-- <div class="p-1 w-1/2">
 
       <div>
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
@@ -50,7 +50,7 @@ const data = defineProps<{
         </div>
       </div>
 
-    </div>
+    </div> -->
     <div class="p-1 w-1/2">
       <div>
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
